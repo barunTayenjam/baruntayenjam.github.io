@@ -1,146 +1,132 @@
-<!DOCTYPE html>
+  <a href="#ui" class="skip-link" style="position:absolute;top:-40px;left:0;background:#f0a63c;color:#03070d;padding:8px 12px;z-index:1000;transition:top 0.3s;">Skip to content</a>
+  <script>document.addEventListener('keydown',e=>{if(e.key==='Tab'){document.querySelector('.skip-link').style.top='0';}});
+  document.addEventListener('focusout',e=>{if(!e.relatedTarget||!e.relatedTarget.closest('.skip-link')){document.querySelector('.skip-link').style.top='-40px';}});
+  </script>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Barun Tayenjam - Tech Lead. Weekly notes on infrastructure, AI systems, and shipping software.">
-<meta name="author" content="Barun Tayenjam">
-<title>Barun Tayenjam · Tech Lead Notes</title>
-<link rel="canonical" href="https://baruntayenjam.github.io/">
-
-<meta property="og:title" content="Barun Tayenjam · Tech Lead Notes">
-<meta property="og:description" content="Weekly notes on infrastructure, AI systems, and shipping software.">
-<meta property="og:url" content="https://baruntayenjam.github.io/">
-<meta property="og:type" content="website">
-
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2322D3EE'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='14' font-weight='bold' fill='%230A0B0D' text-anchor='middle'%3EBT%3C/text%3E%3C/svg%3E">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#03070d">
+  <meta name="description" id="meta-desc" content="Barun Tayenjam — Technical Lead with 12+ years experience building developer tools and automating DevOps toil so teams ship secure AI products faster. 4 open-source dev tools, 20+ hrs/week automated, 10+ devs mentored, 99.99% uptime.">
+  <meta name="keywords" id="meta-keywords" content="Barun Tayenjam, Technical Lead, Developer Experience, DX, Developer Productivity, Internal Developer Tools, Platform Engineering, DevOps Automation, CI/CD, AI Web Security, LLM Integration, Site Reliability, Chandigarh, NetPyx, Avis Technologies">
+  <meta property="og:title" id="og-title" content="Barun Tayenjam — Technical Lead · DevOps, AI Engineering & Developer Experience">
+  <meta property="og:description" id="og-desc" content="Technical Lead with 12+ years building developer tools and automating DevOps toil so teams ship secure AI products faster. 4 open-source tools · 20+ hrs/wk saved · 99.99% uptime.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://baruntayenjam.github.io/">
+  <meta property="og:image" id="og-image" content="https://baruntayenjam.github.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Barun Tayenjam — Technical Lead · DevOps, AI Engineering & Developer Experience">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="tw-title" content="Barun Tayenjam — Technical Lead · DevOps, AI Engineering & Developer Experience">
+  <meta name="twitter:description" id="tw-desc" content="Technical Lead with 12+ years building developer tools and automating DevOps toil so teams ship secure AI products faster.">
+  <meta name="twitter:image" id="tw-image" content="https://baruntayenjam.github.io/og-image.png">
+  <meta name="twitter:creator" content="@baruntayenjam">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2303070d'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='17' fill='%23f0a63c' text-anchor='middle' font-weight='bold'%3EB%3C/text%3E%3C/svg%3E">
+  <meta name="robots" content="index, follow">
+  <title>Barun Tayenjam — Technical Lead · Shipping Secure Software Faster</title>
+  <link rel="canonical" href="https://baruntayenjam.github.io/">
+  <link rel="preload" href="content.json" as="fetch" crossorigin>
+  <link rel="preload" href="commits.json" as="fetch" crossorigin>
+  <!-- GA4 — replace G-XXXXXXXXXX with your Measurement ID to enable analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
+  <a href="#cta-row" class="skip-link">Skip to action</a>
+  <style>.skip-link{position:absolute;top:-40px;left:0;background:#f0a63c;color:#03070d;padding:10px 16px;z-index:10000;font-family:monospace;font-size:0.78rem;text-decoration:none;font-weight:bold;border-radius:0 0 4px 0;transition:top 0.2s;}.skip-link:focus{top:0;outline:3px solid #fff;outline-offset:-3px;}*:focus-visible{outline:2px solid #f0a63c;outline-offset:3px;border-radius:4px;}a:focus-visible,button:focus-visible{outline-offset:4px;}</style>
+  <noscript>
+    <div style="position:fixed;inset:0;z-index:9999;background:#03070d;color:#d8e8e2;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:monospace;padding:2rem;text-align:center;">
+      <h1 style="color:#f0a63c;font-size:2rem;margin-bottom:1rem;">Barun Tayenjam</h1>
+      <p style="color:#8aa8a0;max-width:500px;line-height:1.8;">Technical Lead who ships secure software faster by automating DevOps toil. 15+ years experience. Please enable JavaScript to explore the interactive commit galaxy.</p>
+      <p style="margin-top:2rem;"><a href="https://github.com/baruntayenjam" style="color:#f0a63c;">github.com/baruntayenjam →</a></p>
+      <p><a href="https://www.linkedin.com/in/barun-tayenjam" style="color:#f0a63c;">LinkedIn →</a></p>
+    </div>
+  </noscript>
 
-<!-- Glass Header -->
-<header class="header-glass">
-  <div class="container header-content">
-    <a href="/" class="site-title">BARUN<span class="text-accent-cyan">.</span></a>
-    <nav>
-      <a href="/" class="nav-link">Home</a>
-      <a href="https://github.com/baruntayenjam" target="_blank" rel="noopener" class="nav-link">GitHub</a>
-      <a href="#issues" class="nav-link">Issues</a>
-      <a href="mailto:hello@baruntayenjam.dev" class="nav-link">Contact</a>
-    </nav>
-  </div>
-</header>
+  <script type="application/ld+json" id="ldjson-person">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Barun Tayenjam",
+    "jobTitle": "Technical Lead",
+    "worksFor": { "@type": "Organization", "name": "Grazitti Interactive" },
+    "url": "https://baruntayenjam.github.io",
+    "sameAs": ["https://github.com/baruntayenjam", "https://www.linkedin.com/in/barun-tayenjam"],
+    "knowsAbout": ["Developer Velocity", "DevOps Automation", "CI/CD", "AI Integration", "LLM Applications", "Web Security", "API Design", "GitOps", "Docker", "Kubernetes", "Incident Response", "Technical Leadership", "Mentoring", "Full-Stack Development", "Customer Relations"]
+  }
+  </script>
 
-<main id="main-content">
+  <div id="loading">loading data…</div>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="container">
-    <div class="badge">Tech Lead · Infrastructure & AI</div>
-    <h1 class="hero-title">Shipping software,<br><span class="text-accent-cyan">breaking down</span> systems.</h1>
-    <p class="hero-subtitle">Weekly notes on self-hosted infrastructure, AI tooling, and the engineering decisions that actually matter. No fluff, no hype - just what I'm building, breaking, and learning.</p>
-    <div class="hero-meta">
-      <span>BASED IN INDIA</span>
-      <span class="dot">·</span>
-      <span>PYTHON · DOCKER · K8S</span>
-      <span class="dot">·</span>
-      <span>UPDATED WEEKLY</span>
-    </div>
-    <div class="social-links">
-      <a href="https://github.com/baruntayenjam" target="_blank" rel="noopener" aria-label="GitHub" class="social-link">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.7-5.5 6 .5.4.9 1.2.9 2.3v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"/></svg>
-      </a>
-      <a href="https://x.com/baruntayenjam" target="_blank" rel="noopener" aria-label="X" class="social-link">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.9 1.2h3.7l-8 9.1 9.4 12.5h-7.4l-5.8-7.5-6.6 7.5H.5l8.5-9.7L0 1.2h7.6l5.2 6.9 6.1-6.9Zm-1.3 19.6h2L6.5 3.3H4.3l13.3 17.5Z"/></svg>
-      </a>
-      <a href="mailto:hello@baruntayenjam.dev" aria-label="Email" class="social-link">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
-      </a>
-      <a href="/feed.xml" aria-label="RSS" class="social-link">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20A2.18 2.18 0 0 1 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Stat Strip -->
-<section class="container stat-section">
-  <div class="stat-grid">
-    <div class="stat-tile">
-      <div class="stat-value">7+</div>
-      <div class="stat-label">Years Building Systems</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-value">50+</div>
-      <div class="stat-label">Self-Hosted Services</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-value">Weekly</div>
-      <div class="stat-label">Shipping Cadence</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-value">0</div>
-      <div class="stat-label">Frameworks Used Here</div>
-    </div>
-  </div>
-</section>
-
-<!-- Issues -->
-<section class="container" id="issues">
-  <div class="section-header">
-    <h2 class="section-title">Weekly Notes</h2>
-    <p class="section-subtitle">Reverse chronological · latest first</p>
+  <div id="intro" role="dialog" aria-label="Welcome">
+    <div class="intro-text"></div>
+    <div class="intro-sub" id="intro-sub"></div>
   </div>
 
-  <div class="issues-grid">
-
-    <a href="/issues/2026-08-06-ai-reshuffle.html" class="issue-card">
-      <div class="issue-date">06 AUG 2026 · ISSUE 01</div>
-      <h3 class="issue-title">The Week AI Reshuffled Its Deck</h3>
-      <p class="issue-summary">DeepMind's leadership shakeup, Qwen3.8-Max challenging closed models, and Anthropic's open-weights stance splitting the community. Plus: what "don't be a meat proxy" means for engineering teams.</p>
-      <span class="read-more">Read issue →</span>
-    </a>
-
-    <a href="/issues/2026-08-13-esp32-hardware.html" class="issue-card">
-      <div class="issue-date">13 AUG 2026 · ISSUE 02</div>
-      <h3 class="issue-title">$120k Replaced With $1,600 in ESP32s</h3>
-      <p class="issue-summary">A hacker replaced an entire bowling center management system with off-the-shelf microcontrollers. What it teaches about vendor lock-in, hardware engineering, and knowing when to build vs buy.</p>
-      <span class="read-more">Read issue →</span>
-    </a>
-
-    <a href="/issues/2026-08-20-cloudflare-os.html" class="issue-card">
-      <div class="issue-date">20 AUG 2026 · ISSUE 03</div>
-      <h3 class="issue-title">Cloudflare OS and the Platform Play</h3>
-      <p class="issue-summary">Cloudflare declared themselves an OS for agents, apps, and work. Is this the end of self-hosting, or the start of something more interesting? A self-hoster's honest take.</p>
-      <span class="read-more">Read issue →</span>
-    </a>
-
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container">
-    <div class="footer-links">
-      <a href="https://github.com/baruntayenjam" target="_blank" rel="noopener">GitHub</a>
-      <span class="dot">·</span>
-      <a href="https://x.com/baruntayenjam" target="_blank" rel="noopener">X</a>
-      <span class="dot">·</span>
-      <a href="mailto:hello@baruntayenjam.dev">Email</a>
-      <span class="dot">·</span>
-      <a href="/feed.xml">RSS</a>
+  <div id="canvas-container"></div>
+  <div id="ui">
+    <div id="tooltip"></div>
+    <div id="overlay" role="banner">
+        <h1 style="font-size: 2.2rem; margin: 0; font-weight: 300; letter-spacing: -0.02em;" id="hero-name"></h1>
+        <p style="color: #8aa8a0; font-size: 0.85rem; font-family: monospace;" id="hero-title"></p>
+        <p class="headline" id="hero-headline"></p>
+        <div id="impact-stats" role="list"></div>
+        <nav aria-label="Skills" id="skills-bar" style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.8rem;max-width:340px;"></nav>
+        <div id="cta-row" role="group" aria-label="Actions"></div>
+        <div id="contact-info" style="margin-top:1.5rem;font-family:monospace;font-size:0.7rem;color:#8aa8a0;">
+          <p id="contact-email"></p>
+          <p id="contact-location"></p>
+        </div>
     </div>
-    <p class="mono-text" style="margin-top: 1rem;">Hand-built · No frameworks · No tracking · GitHub Pages</p>
-    <p class="mono-text" style="margin-top: 0.5rem;">© 2026 Barun Tayenjam · Rev 1.0</p>
-  </div>
-</footer>
+    <div id="hud" role="navigation" aria-label="Repository navigation">
+      <div class="repo-list" id="repo-list"></div>
+    </div>
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+    <div id="mobile-note">drag to rotate · tap a star to explore</div>
+    <div class="count-badge"><b id="visible-count"></b> commits visible</div>
+    <div id="contact-links" role="contentinfo" style="position:absolute;bottom:2rem;right:2rem;display:flex;gap:1.5rem;font-family:'Space Mono',monospace;font-size:0.8rem;z-index:11;"></div>
+    <div id="time-slider-wrap">
+      <div class="labels">
+        <span id="time-min">—</span>
+        <span id="time-val">all time</span>
+        <span id="time-max">—</span>
+      </div>
+      <input type="range" id="time-slider" min="0" max="100" value="100" step="0.5" aria-label="Time filter">
+    </div>
+    <div id="project-panel" class="project-panel">
+      <div class="close" onclick="document.getElementById('project-panel').classList.remove('open')">×</div>
+      <h2 id="proj-title"></h2>
+      <div class="repo-path" id="proj-path"></div>
+      <div class="stat-grid" id="proj-stats"></div>
+      <div class="desc" id="proj-desc"></div>
+      <div class="stack-line" id="proj-stack"></div>
+      <div class="recent"><h4>Recent commits</h4><ul id="proj-recent"></ul></div>
+      <a id="proj-link" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem;color:#f0a63c;font-family:monospace;font-size:0.78rem;text-decoration:none;border:1px solid rgba(240,166,60,0.4);padding:0.5rem 1rem;">view on github →</a>
+    </div>
 
+    <!-- Resume panel -->
+    <div id="resume-panel" class="project-panel" style="z-index: 11;">
+      <div class="close" onclick="document.getElementById('resume-panel').classList.remove('open')">×</div>
+      <h2 style="margin-bottom:2rem;">Resume</h2>
+      <div id="resume-content"></div>
+    </div>
+  </div>
+
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/" } }
+  </script>
+  <script src="app.js" type="module" defer></script>
 </body>
 </html>

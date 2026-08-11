@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx serve *)",
+      "Read(//tmp/**)",
+      "Bash(sed -n '37,134p' index.html)",
+      "Bash(sed -n '183,602p' index.html)",
+      "Bash(awk '/<style>/,/<\\\\/style>/' index.html)",
+      "Bash(awk '/<script type=\"module\" defer>/,/<\\\\/script>/' index.html)",
+      "Bash(command -v pandoc)",
+      "Bash(command -v wkhtmltopdf)",
+      "Bash(command -v weasyprint)",
+      "Bash(pip show *)",
+      "Bash(sudo apt-get update)",
+      "Bash(sudo apt-get install -y pandoc texlive-xetex)",
+      "Bash(pip --version)",
+      "Bash(pip3 --version)",
+      "Bash(pacman -Q pango cairo gdk-pixbuf2)",
+      "Bash(pkg-config --exists 'pango cairo')",
+      "Bash(pip install *)"
+    ]
+  }
+}

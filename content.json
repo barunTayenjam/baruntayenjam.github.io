@@ -1,0 +1,196 @@
+{
+  "person": {
+    "name": "Barun Tayenjam",
+    "title": "Technical Lead",
+    "subtitle": "Web Security · API Architecture · AI-Driven Development",
+    "headline": "15+ years architecting secure, high-performance web platforms. I lead teams to ship faster with hardened APIs, automated CI/CD, and AI-enhanced workflows like Vive Coding.",
+    "tagline": "Architecting secure web platforms · automating deployment pipelines · mentoring teams",
+    "introLine": "SECURE SCALABLE WEB PLATFORMS."
+  },
+  "links": {
+    "github": "https://github.com/baruntayenjam",
+    "githubWork": "https://github.com/barungrazitti",
+    "linkedin": "https://www.linkedin.com/in/barun-tayenjam",
+    "blog": "https://baruntayenjam.github.io"
+  },
+  "impactStats": [
+    { "value": "15+", "unit": "years", "label": "architecting web platforms" },
+    { "value": "99.99%", "unit": "uptime", "label": "secure production systems" },
+    { "value": "20+", "unit": "hrs/wk", "label": "automation reclaimed" },
+    { "value": "10+", "unit": "devs", "label": "mentored to senior" },
+    { "value": "4", "unit": "tools", "label": "open-source shipped" }
+  ],
+  "valueProps": [
+    { "title": "Secure by design", "desc": "Production-hardened web platforms with web-security best practices baked in — from API design to defense-in-depth, trusted by enterprise clients." },
+    { "title": "Ship faster, break less", "desc": "Automated CI/CD, SearchUnify-scale deployments, and workflow automation that reclaim 20+ hours/week for engineering teams." },
+    { "title": "AI-native development", "desc": "Leading teams into AI-enhanced workflows — LLM integration, Vive Coding, and tooling that compounds developer productivity." },
+    { "title": "Lift the whole team", "desc": "Mentorship that turns juniors into seniors, plus open-source dev tools adopted across teams to remove daily friction." }
+  ],
+  "cta": {
+    "calendly": "https://calendly.com/baruntayenjam/intro",
+    "resumePdf": "Barun-Tayenjam-Tech-Lead-Resume.pdf",
+    "primaryLabel": "Book a 15-min intro",
+    "secondaryLabel": "View résumé (MD)"
+
+  },
+  "testimonials": [],
+  "blog": {
+    "title": "Tech Lead Notes",
+    "url": "https://baruntayenjam.github.io",
+    "desc": "Weekly notes on developer experience, automation, and the engineering decisions that don't fit in a commit message."
+  },
+  "experience": [
+{ "role": "Technical Lead", "company": "Grazitti Interactive", "period": "Mar 2025 - Present", "achievements": [
+      "Leading development teams to build scalable, secure, and high-performance web solutions",
+      "Mentoring developers on best practices, web security, and API design",
+      "Driving tech stack evolution with Node.js, PHP, and AI-driven methodologies"
+    ] },
+    { "role": "Senior Software Engineer", "company": "Grazitti Interactive", "period": "Apr 2019 - Mar 2025", "achievements": [
+      "Responsible for development of the SearchUnify Website and Docs site",
+      "Contributed to the SearchUnify WordPress Connector",
+      "Implemented CI/CD pipelines to streamline deployment cycles",
+      "Performed rigorous development testing to maintain code quality",
+      "Delivered enterprise client security systems at 99.99% uptime"
+    ] },
+    { "role": "Software Engineer", "company": "Grazitti Interactive", "period": "Apr 2018 - Apr 2019", "achievements": [
+      "Handled multiple Web Development projects",
+      "Explored modular approaches to WordPress development"
+    ] },
+    { "role": "Senior Web Developer", "company": "NetPyx", "period": "Aug 2013 - Apr 2018", "achievements": [
+      "Led development of enterprise-grade web applications",
+      "Gathered and implemented client requirements effectively"
+    ] },
+    { "role": "Web Developer", "company": "Avis Technologies", "period": "Apr 2011 - Sep 2013", "achievements": [
+      "Developed responsive web interfaces and maintained client-side platforms",
+      "Built and integrated RESTful APIs for client applications"
+    ] }
+  ],
+  "education": [
+    { "degree": "MBA, Information Technology", "institution": "Lovely Professional University", "year": "2017" },
+    { "degree": "BCA, First Division", "institution": "Punjab Technical University", "year": "2014" },
+    { "degree": "B.Sc. Information Technology", "institution": "DAV College Jalandhar", "year": "" }
+    ],
+    "stats": {
+    "commits2025": 588,
+    "reposManaged": 8,
+    "uptime": "99.99%"
+    },
+    "contact": {
+    "email": "barun.2009.tam@gmail.com",
+    "birthday": "September 15",
+    "location": "Imphal West, Manipur, India"
+    },
+  "skills": [
+    { "label": "Developer Experience (DX)", "category": "core" },
+    { "label": "Internal Dev Tools & CLI", "category": "core" },
+    { "label": "GitOps Automation", "category": "infra" },
+    { "label": "CI/CD & Observability", "category": "infra" },
+    { "label": "AI/LLM Integration", "category": "ai" },
+    { "label": "Docker & Kubernetes", "category": "infra" },
+    { "label": "Security Architecture", "category": "security" },
+    { "label": "Team Leadership & Mentoring", "category": "core" },
+    { "label": "API Design", "category": "core" },
+    { "label": "Incident Response", "category": "security" }
+  ],
+  "repos": {
+    "gitops": {
+      "title": "gitops",
+      "path": "github.com/barungrazitti/gitops",
+      "url": "https://github.com/barungrazitti/gitops",
+      "desc": "One-command git automation with AI. Generates commit messages via Groq or Ollama — adopted across the team to standardize hygiene and cut time spent on commits.",
+      "color": "#f0a63c",
+      "stack": ["JS", "Groq", "Ollama"],
+      "featured": true
+    },
+    "JiraGrok": {
+      "title": "JiraGrok",
+      "path": "github.com/barungrazitti/JiraGrok",
+      "url": "https://github.com/barungrazitti/JiraGrok",
+      "desc": "AI Chrome extension summarizing JIRA tickets using Groq (Llama 3.3). Cuts context-switching and ticket-triage time for PMs and engineers.",
+      "color": "#ec4899",
+      "stack": ["JS", "Groq", "AI"],
+      "featured": true
+    },
+    "StarkCSS": {
+      "title": "StarkCSS",
+      "path": "github.com/barungrazitti/StarkCSS",
+      "url": "https://github.com/barungrazitti/StarkCSS",
+      "desc": "AI-powered CSS optimizer & linter. Detects unused rules and dead specificity so devs ship leaner bundles with less manual review.",
+      "color": "#06b6d4",
+      "stack": ["JS", "CSS", "AI"],
+      "featured": true
+    },
+    "wordpress-matrix": {
+      "title": "wordpress-matrix",
+      "path": "github.com/baruntayenjam/wordpress-matrix",
+      "url": "https://github.com/baruntayenjam/wordpress-matrix",
+      "desc": "Production-ready WordPress dev environment via Docker. One command from clone to running stack — zero-toil onboarding for new devs.",
+      "color": "#a855f7",
+      "stack": ["Docker", "WordPress"],
+      "featured": true
+    },
+    "casa-visitor-guardian": {
+      "title": "casa-visitor-guardian",
+      "path": "github.com/baruntayenjam/casa-visitor-guardian",
+      "url": "https://github.com/baruntayenjam/casa-visitor-guardian",
+      "desc": "TypeScript visitor management and physical-security system. Role-based access, audit logging.",
+      "color": "#4aa37f",
+      "stack": ["TypeScript", "Security"],
+      "featured": true
+    },
+    "baruntayenjam.github.io": {
+      "title": "Tech Lead Notes",
+      "path": "github.com/baruntayenjam/baruntayenjam.github.io",
+      "url": "https://baruntayenjam.github.io",
+      "desc": "Weekly notes on developer experience, automation, and engineering decisions. The writing behind the work.",
+      "color": "#22d3ee",
+      "stack": ["Jekyll", "Writing"],
+      "featured": true,
+      "isBlog": true
+    },
+    "effects-of-e20": {
+      "title": "effects-of-e20",
+      "path": "github.com/baruntayenjam/effects-of-e20",
+      "url": "https://github.com/baruntayenjam/effects-of-e20",
+      "desc": "Research and data analysis project.",
+      "color": "#ef4444",
+      "stack": ["HTML", "Data"],
+      "featured": false
+    },
+    "manipur-economy": {
+      "title": "manipur-economy",
+      "path": "github.com/baruntayenjam/manipur-economy",
+      "url": "https://github.com/baruntayenjam/manipur-economy",
+      "desc": "Economic research and visualization platform.",
+      "color": "#3b82f6",
+      "stack": ["HTML", "Research"],
+      "featured": false
+    },
+    "taskapi": {
+      "title": "taskapi",
+      "path": "github.com/baruntayenjam/taskapi",
+      "url": "https://github.com/baruntayenjam/taskapi",
+      "desc": "Early experiment: a tasks API with CRUD endpoints.",
+      "color": "#5eead4",
+      "stack": ["JavaScript"],
+      "featured": false
+    },
+    "home-security": {
+      "title": "home-security",
+      "path": "github.com/baruntayenjam/home-security",
+      "url": "https://github.com/baruntayenjam/home-security",
+      "desc": "Early JavaScript home-security experiment.",
+      "color": "#fbbf24",
+      "stack": ["JavaScript"],
+      "featured": false
+    }
+  },
+  "seo": {
+    "description": "Barun Tayenjam — Technical Lead with 12+ years experience building developer tools and automating DevOps toil so teams ship secure AI products faster. 4 open-source dev tools, 20+ hrs/week automated, 10+ devs mentored, 99.99% uptime.",
+    "keywords": "Technical Lead, Developer Experience, DX, Developer Productivity, Internal Developer Tools, Platform Engineering, DevOps Automation, CI/CD, AI Web Security, LLM Integration, Site Reliability, Chandigarh, Barun Tayenjam",
+    "ogTitle": "Barun Tayenjam — Technical Lead · Developer Experience & DevOps",
+    "ogDescription": "I build developer tools and automate DevOps toil so teams ship secure AI products faster. 4 open-source tools · 20+ hrs/wk saved · 99.99% uptime.",
+    "ogImage": "https://baruntayenjam.github.io/og-image.png",
+    "twitterHandle": "@baruntayenjam"
+  }
+}
