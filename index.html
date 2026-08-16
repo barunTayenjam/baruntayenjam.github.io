@@ -1,4 +1,4 @@
-  <a href="#ui" class="skip-link" style="position:absolute;top:-40px;left:0;background:#f0a63c;color:#03070d;padding:8px 12px;z-index:1000;transition:top 0.3s;">Skip to content</a>
+  <a href="#ui" class="skip-link">Skip to content</a>
   <script>document.addEventListener('keydown',e=>{if(e.key==='Tab'){document.querySelector('.skip-link').style.top='0';}});
   document.addEventListener('focusout',e=>{if(!e.relatedTarget||!e.relatedTarget.closest('.skip-link')){document.querySelector('.skip-link').style.top='-40px';}});
   </script>
@@ -29,15 +29,7 @@
   <link rel="canonical" href="https://baruntayenjam.github.io/">
   <link rel="preload" href="content.json" as="fetch" crossorigin>
   <link rel="preload" href="commits.json" as="fetch" crossorigin>
-  <!-- GA4 — replace G-XXXXXXXXXX with your Measurement ID to enable analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -71,15 +63,18 @@
 
   <div id="intro" role="dialog" aria-label="Welcome">
     <div class="intro-text"></div>
-    <div class="intro-sub" id="intro-sub"></div>
+    <div class="intro-sub" id="intro-sub">the commit galaxy — 15 years, one constellation</div>
   </div>
 
-  <div id="canvas-container"></div>
+  <div id="canvas-container" role="region" aria-label="Interactive 3D commit galaxy visualization representing 15 years of software engineering history"></div>
+  <div class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
+    Interactive 3D commit galaxy showing 588 commits across 8 repositories including gitops, JiraGrok, StarkCSS, and wordpress-matrix. Use the time slider below to filter commits chronologically, or click any repo in the sidebar/legend to inspect details and commit history.
+  </div>
   <div id="ui">
     <div id="tooltip"></div>
-    <div id="overlay" role="banner">
-        <h1 style="font-size: 2.2rem; margin: 0; font-weight: 300; letter-spacing: -0.02em;" id="hero-name"></h1>
-        <p style="color: #8aa8a0; font-size: 0.85rem; font-family: monospace;" id="hero-title"></p>
+    <div id="overlay" role="banner" aria-modal="true">
+        <h1 id="hero-name"></h1>
+        <p id="hero-title"></p>
         <p class="headline" id="hero-headline"></p>
         <div id="impact-stats" role="list"></div>
         <nav aria-label="Skills" id="skills-bar" style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.8rem;max-width:340px;"></nav>
@@ -94,7 +89,7 @@
     </div>
     <div id="cursor-dot"></div>
     <div id="cursor-ring"></div>
-    <div id="mobile-note">drag to rotate · tap a star to explore</div>
+    <div id="mobile-legend" style="display:none; position:fixed; bottom:8rem; left:1rem; right:1rem; background:rgba(3,16,24,0.95); border:1px solid var(--border); padding:0.5rem; border-radius:4px; font-family:monospace; font-size:0.6rem; z-index:10; max-height:100px; overflow-y:auto; color:var(--fg-muted);"></div>
     <div class="count-badge"><b id="visible-count"></b> commits visible</div>
     <div id="contact-links" role="contentinfo" style="position:absolute;bottom:2rem;right:2rem;display:flex;gap:1.5rem;font-family:'Space Mono',monospace;font-size:0.8rem;z-index:11;"></div>
     <div id="time-slider-wrap">
@@ -105,8 +100,8 @@
       </div>
       <input type="range" id="time-slider" min="0" max="100" value="100" step="0.5" aria-label="Time filter">
     </div>
-    <div id="project-panel" class="project-panel">
-      <div class="close" onclick="document.getElementById('project-panel').classList.remove('open')">×</div>
+    <div id="project-panel" class="project-panel" role="dialog" aria-modal="true">
+      <div class="close" role="button" aria-label="Close project panel" onclick="document.getElementById('project-panel').classList.remove('open')">×</div>
       <h2 id="proj-title"></h2>
       <div class="repo-path" id="proj-path"></div>
       <div class="stat-grid" id="proj-stats"></div>
@@ -124,9 +119,7 @@
     </div>
   </div>
 
-  <script type="importmap">
-    { "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/" } }
-  </script>
   <script src="app.js" type="module" defer></script>
+</body>
 </body>
 </html>

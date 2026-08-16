@@ -27,11 +27,8 @@
     { "title": "Lift the whole team", "desc": "Mentorship that turns juniors into seniors, plus open-source dev tools adopted across teams to remove daily friction." }
   ],
   "cta": {
-    "calendly": "https://calendly.com/baruntayenjam/intro",
     "resumePdf": "Barun-Tayenjam-Tech-Lead-Resume.pdf",
-    "primaryLabel": "Book a 15-min intro",
     "secondaryLabel": "View résumé (MD)"
-
   },
   "testimonials": [],
   "blog": {
