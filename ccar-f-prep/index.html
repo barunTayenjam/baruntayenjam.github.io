@@ -39,7 +39,7 @@
     touch-action: pan-y;
   }
   .bar { height: 3px; background: var(--border); flex-shrink: 0; }
-  .bar > div { height: 100%; background: var(--accent); width: 0; transition: width .2s; }
+  .bar > div { height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .2s; }
   header {
     display: flex;
     align-items: center;
@@ -174,7 +174,7 @@ function render(n) {
   }
   el.innerHTML = html;
   els.count.textContent = (n + 1) + "/" + SLIDES.length;
-  els.prog.style.width = (100 * (n + 1) / SLIDES.length) + "%";
+  els.prog.style.transform = "scaleX(" + ((n + 1) / SLIDES.length) + ")";
   els.prev.disabled = n === 0;
   els.next.disabled = n === SLIDES.length - 1;
   document.querySelectorAll(".chips button").forEach((b, i) =>
