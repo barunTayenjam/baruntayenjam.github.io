@@ -2,94 +2,207 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CCAR-F Study Materials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CCAR-F Study Deck</title>
 <style>
   :root {
-    --bg: #f5f4f0;
+    --bg: #f7f6f3;
     --card: #ffffff;
     --text: #1a1a1a;
     --muted: #6b6b6b;
     --accent: #d97757;
+    --trap: #c00000;
     --border: #e5e2dc;
+    --chip: #ece9e3;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #141414;
-      --card: #1e1e1e;
-      --text: #f0f0f0;
-      --muted: #9a9a9a;
-      --border: #333;
+      --bg: #151412;
+      --card: #211f1c;
+      --text: #f0eee9;
+      --muted: #9a968e;
+      --accent: #e08b6d;
+      --trap: #ff7b6b;
+      --border: #38342e;
+      --chip: #2b2925;
     }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overscroll-behavior: none; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background: var(--bg);
     color: var(--text);
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 2rem 1rem;
+    height: 100dvh;
+    touch-action: pan-y;
   }
-  .wrap { width: 100%; max-width: 34rem; }
-  header { margin-bottom: 2rem; }
-  h1 { font-size: 1.85rem; font-weight: 700; letter-spacing: -0.02em; }
-  .sub { color: var(--muted); font-size: 0.9rem; margin-top: 0.35rem; }
-  .card {
+  .bar { height: 3px; background: var(--border); flex-shrink: 0; }
+  .bar > div { height: 100%; background: var(--accent); width: 0; transition: width .2s; }
+  header {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: .6rem;
+    padding: .55rem .9rem;
+    flex-shrink: 0;
+  }
+  header .count { font-variant-numeric: tabular-nums; font-size: .8rem; color: var(--muted); min-width: 3.2em; }
+  .chips { display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: none; flex: 1; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chips button {
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    background: var(--chip);
+    color: var(--text);
+    border-radius: 99px;
+    font-size: .7rem;
+    padding: .28rem .6rem;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .chips button.here { background: var(--accent); border-color: var(--accent); color: #fff; }
+  main {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 .9rem .5rem;
+  }
+  .slide {
+    max-width: 40rem;
+    margin: 0 auto;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.1rem 1.25rem;
-    margin-bottom: 0.75rem;
-    text-decoration: none;
-    color: var(--text);
-    transition: border-color 0.15s;
+    border-radius: 16px;
+    padding: 1.4rem 1.3rem 1.6rem;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
   }
-  .card:hover, .card:focus-visible { border-color: var(--accent); }
-  .icon { font-size: 1.6rem; flex-shrink: 0; }
-  .info { min-width: 0; }
-  .name { font-weight: 600; font-size: 1rem; }
-  .desc { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
-  footer { margin-top: 2rem; color: var(--muted); font-size: 0.8rem; }
+  .slide.title-slide { justify-content: center; text-align: center; }
+  .slide.title-slide h1 { font-size: clamp(1.6rem, 6vw, 2.3rem); letter-spacing: -.02em; }
+  .slide.title-slide .subtitle { color: var(--muted); margin-top: .9rem; font-size: clamp(.95rem, 3.5vw, 1.15rem); }
+  .slide.section-slide { justify-content: center; text-align: center; background: var(--accent); border-color: var(--accent); color: #fff; }
+  .slide.section-slide h2 { font-size: clamp(1.5rem, 6vw, 2.2rem); letter-spacing: -.02em; }
+  .slide.content-slide h2 {
+    font-size: clamp(1.25rem, 4.6vw, 1.7rem);
+    letter-spacing: -.02em;
+    padding-bottom: .9rem;
+    margin-bottom: 1.1rem;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  ul { list-style: none; display: flex; flex-direction: column; gap: .85rem; }
+  li { display: flex; gap: .65rem; line-height: 1.45; }
+  li::before { content: ""; width: .45em; height: .45em; border-radius: 50%; background: var(--muted); flex-shrink: 0; margin-top: .5em; }
+  li.s24 { font-size: clamp(1.1rem, 4vw, 1.35rem); font-weight: 700; }
+  li.s22 { font-size: clamp(1rem, 3.7vw, 1.22rem); }
+  li.s20 { font-size: clamp(.92rem, 3.4vw, 1.1rem); }
+  li.s18 { font-size: clamp(.85rem, 3.1vw, 1rem); color: var(--muted); }
+  li.trap::before { background: var(--trap); margin-top: .55em; }
+  li.trap { color: var(--trap); }
+  footer {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem .9rem calc(.5rem + env(safe-area-inset-bottom));
+  }
+  footer button {
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    border-radius: 10px;
+    font-size: 1.15rem;
+    width: 3rem;
+    height: 2.4rem;
+    cursor: pointer;
+  }
+  footer button:disabled { opacity: .3; }
+  footer .hint { color: var(--muted); font-size: .72rem; }
 </style>
 </head>
 <body>
-<main class="wrap">
-  <header>
-    <h1>Claude Certified Architect – Foundations</h1>
-    <p class="sub">Study materials · Exam code CCAR-F</p>
-  </header>
+<div class="bar"><div id="prog"></div></div>
+<header>
+  <span class="count" id="count"></span>
+  <nav class="chips" id="chips"></nav>
+</header>
+<main id="main"><div class="slide" id="slide"></div></main>
+<footer>
+  <button id="prev" aria-label="Previous slide">&#8249;</button>
+  <span class="hint">swipe &#8592;&#8594; &middot; arrows &middot; chips to jump</span>
+  <button id="next" aria-label="Next slide">&#8250;</button>
+</footer>
+<script>
+const SLIDES = [{"layout": "title", "title": "Claude Certified Architect – Foundations", "subtitle": "CCAR-F Complete Study Deck · 5 Domains · Exam Traps Marked"}, {"layout": "title_content", "title": "Exam Facts (Memorize)", "bullets": [{"text": "60 questions · 120 minutes · $125 · Pearson VUE", "size": 24, "bold": true}, {"text": "Pass = 720 / 1000 scaled", "size": 24, "bold": true}, {"text": "Multiple choice + multi-response (question says how many to pick)", "size": 20}, {"text": "Valid 12 months · free renewal assessment", "size": 20}, {"text": "Retakes: wait 14 / 30 / 90 days · max 4 per year", "size": 20}, {"text": "Scenario-based. Tests JUDGMENT, not memorization", "size": 22, "bold": true}, {"text": "Covers: Claude Code, Agent SDK, Claude API, MCP", "size": 20}]}, {"layout": "title_content", "title": "The 5 Domains", "bullets": [{"text": "1 · Agentic Architecture & Orchestration — 27%", "size": 24, "bold": true}, {"text": "Loops, multi-agent, subagents, hooks, sessions", "size": 18}, {"text": "2 · Tool Design & MCP Integration — 18%", "size": 24, "bold": true}, {"text": "Tool descriptions, errors, tool_choice, MCP servers", "size": 18}, {"text": "3 · Claude Code Configuration & Workflows — 20%", "size": 24, "bold": true}, {"text": "CLAUDE.md, skills, rules, plan mode, CI/CD", "size": 18}, {"text": "4 · Prompt Engineering & Structured Output — 20%", "size": 24, "bold": true}, {"text": "Criteria, few-shot, schemas, batches, review", "size": 18}, {"text": "5 · Context Management & Reliability — 15%", "size": 24, "bold": true}, {"text": "Context window, escalation, errors, human review", "size": 18}]}, {"layout": "section", "title": "DOMAIN 1 — Agentic Architecture (27%)"}, {"layout": "title_content", "title": "1.1 The Agentic Loop — Concept", "bullets": [{"text": "Claude = smart worker locked in a room. Acts only via TOOLS you give it", "size": 22}, {"text": "Loop: Claude asks for tool → you run it → result goes back → Claude thinks again", "size": 22}, {"text": "Repeats until Claude gives final answer", "size": 22}, {"text": "Every reply carries a flag: stop_reason", "size": 24, "bold": true}, {"text": "stop_reason = \"tool_use\" → run the tool, feed result back, continue", "size": 22}, {"text": "stop_reason = \"end_turn\" → done. Show answer. Stop loop", "size": 22}, {"text": "Tool results APPEND to conversation history — Claude reasons over them next turn", "size": 22}, {"text": "Claude decides WHICH tool next = model-driven (the 'agentic' part)", "size": 22}]}, {"layout": "title_content", "title": "1.1 Loop — Exam Traps", "bullets": [{"text": "TRAP: parsing Claude's TEXT ('I'm done') to detect completion → WRONG", "size": 22, "color": "C00000", "bold": true}, {"text": "Only stop_reason is reliable", "size": 20}, {"text": "TRAP: iteration cap (e.g. max 25 loops) as PRIMARY stop mechanism → WRONG", "size": 22, "color": "C00000", "bold": true}, {"text": "Cap = safety net only, never the design", "size": 20}, {"text": "TRAP: 'answer contains text = finished' → WRONG", "size": 22, "color": "C00000", "bold": true}, {"text": "Claude can output text AND tool calls in the same turn", "size": 20}, {"text": "TRAP: pre-programmed fixed tool sequence → WRONG", "size": 22, "color": "C00000", "bold": true}, {"text": "Correct answer is ALWAYS: check stop_reason", "size": 24, "bold": true}]}, {"layout": "title_content", "title": "1.2 Multi-Agent — Hub and Spoke", "bullets": [{"text": "Boss = coordinator. Specialists = subagents", "size": 22}, {"text": "Hub-and-spoke: ALL communication goes through boss", "size": 24, "bold": true}, {"text": "Subagents NEVER talk directly to each other", "size": 24, "bold": true}, {"text": "Why: observability, consistent error handling, controlled flow", "size": 20}, {"text": "Boss jobs: split work, delegate, collect, aggregate, decide who to invoke", "size": 22}, {"text": "Boss picks team per request — simple query = few/no subagents", "size": 22}, {"text": "TRAP: always running the full pipeline for every request → wasteful", "size": 22, "color": "C00000"}]}, {"layout": "title_content", "title": "1.2 Subagents Start Blank", "bullets": [{"text": "Subagents do NOT inherit boss's conversation or memory", "size": 24, "bold": true}, {"text": "Whatever subagent needs must be IN THE TASK PROMPT itself", "size": 24, "bold": true}, {"text": "Search agent found facts → synthesis agent needs them → boss PASTES facts into synthesis prompt", "size": 22}, {"text": "TRAP: 'subagents share memory automatically' → WRONG", "size": 22, "color": "C00000"}, {"text": "TRAP: splitting tasks TOO NARROW → incomplete coverage, gaps between subtasks", "size": 22, "color": "C00000"}, {"text": "Partition scope to MINIMIZE duplication (distinct subtopics per agent)", "size": 20}, {"text": "Iterative refinement: boss reviews synthesis → finds gap → re-delegates targeted query → re-synthesizes", "size": 22}]}, {"layout": "title_content", "title": "1.3 Task Tool & Parallel Spawning", "bullets": [{"text": "Task tool = how boss spawns subagents", "size": 24, "bold": true}, {"text": "Boss's allowedTools MUST include \"Task\" or it cannot spawn anyone", "size": 24, "bold": true}, {"text": "Each subagent type = AgentDefinition: description, own system prompt, own tool restrictions", "size": 22}, {"text": "E.g. search agent gets ONLY search tools — cannot touch files", "size": 20}, {"text": "PARALLEL: boss emits multiple Task calls in ONE single response", "size": 24, "bold": true}, {"text": "Sequential (task, wait, task, wait) = slower — exam prefers parallel", "size": 20}, {"text": "Pass findings in structured form: content separate from metadata (source URL, doc name, page number)", "size": 22}]}, {"layout": "title_content", "title": "1.3 Writing Task Prompts for Subagents", "bullets": [{"text": "BAD: step-by-step procedure ('first search X, then read Y')", "size": 22, "color": "C00000"}, {"text": "Rigid, fragile, kills adaptability", "size": 20}, {"text": "GOOD: research GOAL + quality criteria", "size": 24, "bold": true}, {"text": "'Find EV sales data for India; include source + date; skip blogs; method up to you'", "size": 22}, {"text": "Subagent figures out its own steps → adapts to what it finds", "size": 22}, {"text": "Structured data passing preserves attribution downstream", "size": 20}]}, {"layout": "title_content", "title": "1.4 Workflow Enforcement & Handoff", "bullets": [{"text": "Prompt instructions = PROBABILISTIC compliance (can fail)", "size": 24, "bold": true}, {"text": "Programmatic enforcement (hooks, gates) = GUARANTEED compliance", "size": 24, "bold": true}, {"text": "When business rules demand certainty (identity check before refund) → enforce programmatically", "size": 22}, {"text": "Pattern: block process_refund until get_customer returned verified ID", "size": 22}, {"text": "Multi-concern request → split into items → investigate in parallel → synthesize one resolution", "size": 22}, {"text": "Escalation handoff = STRUCTURED SUMMARY: customer ID, root cause, refund amount, recommended action", "size": 22}, {"text": "Human agent has no transcript access — summary must stand alone", "size": 20}]}, {"layout": "title_content", "title": "1.5 Agent SDK Hooks", "bullets": [{"text": "Hooks = code that intercepts the agent loop at fixed points", "size": 22}, {"text": "PostToolUse hook: intercepts tool RESULTS before Claude sees them", "size": 24, "bold": true}, {"text": "Use: normalize messy data (Unix vs ISO 8601 timestamps, status codes) from different MCP tools", "size": 22}, {"text": "Tool-call interception hook: blocks policy violations BEFORE execution", "size": 24, "bold": true}, {"text": "E.g. refund > $500 → block → redirect to human escalation", "size": 22}, {"text": "Rule: guaranteed compliance → hook. Flexible guidance → prompt", "size": 24, "bold": true}, {"text": "TRAP: choosing prompt-based enforcement for hard business rules → WRONG", "size": 22, "color": "C00000"}]}, {"layout": "title_content", "title": "1.6 Task Decomposition", "bullets": [{"text": "Two patterns — pick by task type", "size": 22}, {"text": "PROMPT CHaining (fixed sequential pipeline): predictable multi-aspect work", "size": 24, "bold": true}, {"text": "E.g. big code review → analyze each file separately → then cross-file integration pass", "size": 20}, {"text": "DYNAMIC adaptive decomposition: open-ended investigation", "size": 24, "bold": true}, {"text": "Generate subtasks based on what each step DISCOVERS", "size": 20}, {"text": "E.g. 'add tests to legacy codebase' → map structure → find high-impact areas → prioritized adaptive plan", "size": 20}, {"text": "Why split: avoid ATTENTION DILUTION — one pass over everything = shallow findings", "size": 22}, {"text": "TRAP: per-file + integration pass beats single mega-review", "size": 22, "color": "C00000"}]}, {"layout": "title_content", "title": "1.7 Session State: Resume & Fork", "bullets": [{"text": "--resume <session-name> → continue a named prior session", "size": 24, "bold": true}, {"text": "fork_session → branch from shared baseline, explore divergent approaches", "size": 24, "bold": true}, {"text": "E.g. compare two testing strategies from one codebase analysis", "size": 20}, {"text": "After code changed: TELL the resumed session WHICH files changed → targeted re-analysis", "size": 22}, {"text": "Stale tool results? → start NEW session with structured summary (more reliable than resume)", "size": 24, "bold": true}, {"text": "Resume when prior context mostly still valid", "size": 22}, {"text": "TRAP: resuming with stale tool outputs → wrong answers", "size": 22, "color": "C00000"}]}, {"layout": "section", "title": "DOMAIN 2 — Tool Design & MCP (18%)"}, {"layout": "title_content", "title": "2.1 Tool Descriptions = Selection Mechanism", "bullets": [{"text": "Claude picks tools BY DESCRIPTION. Bad description = wrong tool", "size": 24, "bold": true}, {"text": "Include: purpose, input format, example queries, edge cases, boundaries, when NOT to use", "size": 22}, {"text": "Similar tools with vague descriptions → MISROUTING", "size": 22}, {"text": "Classic exam case: analyze_content vs analyze_document, near-identical descriptions", "size": 20}, {"text": "Fixes: rename to purpose-specific (extract_web_results), sharpen descriptions", "size": 22}, {"text": "Or SPLIT generic tool into specific ones:", "size": 22}, {"text": "analyze_document → extract_data_points + summarize_content + verify_claim_against_source", "size": 20}, {"text": "System prompt keywords can create unintended tool associations — review prompts too", "size": 20}]}, {"layout": "title_content", "title": "2.2 Structured Error Responses", "bullets": [{"text": "MCP isError flag = the pattern for reporting tool failure back to agent", "size": 24, "bold": true}, {"text": "Error categories — know all four:", "size": 24, "bold": true}, {"text": "TRANSIENT (timeout, service down) · VALIDATION (bad input) · BUSINESS (policy violation) · PERMISSION (no access)", "size": 20}, {"text": "Return: errorCategory + isRetryable (boolean) + human-readable description", "size": 22}, {"text": "TRAP: uniform errors ('Operation failed') → agent cannot decide how to recover", "size": 22, "color": "C00000"}, {"text": "Retryable=false + friendly explanation for business rule violations", "size": 22}, {"text": "Distinguish: access FAILURE (retry decision needed) vs valid EMPTY result (query worked, no matches)", "size": 22}]}, {"layout": "title_content", "title": "2.2 Local Recovery", "bullets": [{"text": "Subagents handle transient failures THEMSELVES (retry locally)", "size": 24, "bold": true}, {"text": "Escalate to coordinator ONLY unresolvable errors — with partial results + what was attempted", "size": 22}, {"text": "Structured error context = smart coordinator recovery decisions", "size": 20}, {"text": "TRAP: silent suppression (empty result looks like success) → WRONG", "size": 22, "color": "C00000"}, {"text": "TRAP: whole pipeline dies on single subagent failure → WRONG", "size": 22, "color": "C00000"}, {"text": "TRAP: wasting retries on non-retryable errors → check isRetryable first", "size": 22, "color": "C00000"}]}, {"layout": "title_content", "title": "2.3 Tool Distribution", "bullets": [{"text": "FEWER tools = better selection. 4-5 > 18", "size": 24, "bold": true}, {"text": "Too many tools → decision complexity → wrong picks", "size": 22}, {"text": "Give each agent ONLY tools for its role", "size": 24, "bold": true}, {"text": "Specialist with out-of-role tools WILL misuse them (synthesis agent doing web searches)", "size": 22}, {"text": "Replace generic with constrained: fetch_url → load_document (validates doc URLs)", "size": 20}, {"text": "High-frequency cross-role need → scoped tool (verify_fact for synthesis agent); complex cases → route via coordinator", "size": 22}]}, {"layout": "title_content", "title": "2.3 tool_choice Options", "bullets": [{"text": "\"auto\" — model decides: tool call OR plain text", "size": 24, "bold": true}, {"text": "\"any\" — MUST call some tool (model picks which). Blocks chatty answers", "size": 24, "bold": true}, {"text": "Use: guarantee structured output when doc type unknown, multiple schemas exist", "size": 20}, {"text": "{\"type\": \"tool\", \"name\": \"extract_metadata\"} — FORCED specific tool", "size": 24, "bold": true}, {"text": "Use: ensure extraction runs FIRST before enrichment steps", "size": 20}, {"text": "Exam pattern: force tool first turn → process next steps in follow-up turns", "size": 22}]}, {"layout": "title_content", "title": "2.4 MCP Server Integration", "bullets": [{"text": "Project scope: .mcp.json in repo → SHARED with team via version control", "size": 24, "bold": true}, {"text": "User scope: ~/.claude.json → personal/experimental servers", "size": 24, "bold": true}, {"text": "Both live simultaneously", "size": 20}, {"text": "Secrets: environment variable expansion in .mcp.json — ${GITHUB_TOKEN} — never commit tokens", "size": 24, "bold": true}, {"text": "Tools from ALL configured servers discovered at connection time, available together", "size": 22}, {"text": "Prefer EXISTING community MCP servers (e.g. Jira) over custom — build custom only for team-specific workflows", "size": 22}]}, {"layout": "title_content", "title": "2.4 MCP Details That Get Tested", "bullets": [{"text": "Weak MCP tool descriptions → Claude prefers BUILT-IN tools (Grep) over better MCP tools", "size": 24, "bold": true}, {"text": "Fix: enhance MCP tool descriptions — capabilities + outputs in detail", "size": 22}, {"text": "MCP RESOURCES = content catalogs (issue summaries, doc trees, DB schemas)", "size": 24, "bold": true}, {"text": "Give visibility into available data WITHOUT exploratory tool calls", "size": 22}, {"text": "TRAP: new teammate missing shared servers → servers were in someone's user config, not project .mcp.json", "size": 22, "color": "C00000"}]}, {"layout": "title_content", "title": "2.5 Built-in Tools", "bullets": [{"text": "Grep = search CONTENT (function names, error strings, imports, callers)", "size": 24, "bold": true}, {"text": "Glob = search FILE NAMES / paths (*.test.tsx, *.py)", "size": 24, "bold": true}, {"text": "Read / Write = full file operations", "size": 22}, {"text": "Edit = targeted change via UNIQUE text match", "size": 22}, {"text": "Edit fails on non-unique anchor text → fallback: Read then Write full file", "size": 24, "bold": true}, {"text": "Explore incrementally: Grep entry points → Read imports → trace flow. NOT read-all-first", "size": 22}, {"text": "Trace usage: find exported names → Grep each name across codebase", "size": 20}]}, {"layout": "section", "title": "DOMAIN 3 — Claude Code Config (20%)"}, {"layout": "title_content", "title": "3.1 CLAUDE.md Hierarchy", "bullets": [{"text": "User level: ~/.claude/CLAUDE.md → personal ONLY, never shared", "size": 24, "bold": true}, {"text": "Project level: CLAUDE.md in root (or .claude/CLAUDE.md) → shared via git", "size": 24, "bold": true}, {"text": "Directory level: subdirectory CLAUDE.md → applies in that subtree", "size": 22}, {"text": "Classic exam scenario: new teammate NOT getting instructions → they were in USER level instead of PROJECT level", "size": 24, "bold": true}, {"text": "@import syntax → reference external files, keep CLAUDE.md modular", "size": 22}, {"text": "E.g. each package imports only its relevant standards file", "size": 20}, {"text": "/memory command → verify which memory files are loaded", "size": 22}]}, {"layout": "title_content", "title": "3.1 .claude/rules/ Directory", "bullets": [{"text": "Alternative to one monolithic CLAUDE.md", "size": 22}, {"text": "Split into topic files: testing.md, api-conventions.md, deployment.md", "size": 24, "bold": true}, {"text": "Rules files support YAML frontmatter — see 3.3 for path scoping", "size": 20}, {"text": "Always-loaded universal standards → CLAUDE.md", "size": 22}, {"text": "On-demand, conditional, topic-scoped → rules files", "size": 22}]}, {"layout": "title_content", "title": "3.2 Slash Commands & Skills", "bullets": [{"text": "Commands: .claude/commands/ = project, shared via git", "size": 24, "bold": true}, {"text": "~/.claude/commands/ = personal", "size": 22}, {"text": "Skills: .claude/skills/SKILL.md files", "size": 22}, {"text": "Frontmatter options: context: fork · allowed-tools · argument-hint", "size": 24, "bold": true}, {"text": "context: fork → runs in ISOLATED sub-agent context", "size": 24, "bold": true}, {"text": "Verbose output (codebase analysis) or exploration (brainstorm) stays OUT of main conversation", "size": 22}, {"text": "allowed-tools → restrict tools during skill (e.g. file writes only)", "size": 22}, {"text": "argument-hint → prompts for parameters when invoked without args", "size": 20}, {"text": "Personal variant → ~/.claude/skills/ with DIFFERENT name (don't affect teammates)", "size": 20}]}, {"layout": "title_content", "title": "3.3 Path-Specific Rules", "bullets": [{"text": ".claude/rules/ file + YAML frontmatter paths field with GLOB patterns", "size": 24, "bold": true}, {"text": "paths: [\"src/api/**/*\"] → loads only when editing matching files", "size": 24, "bold": true}, {"text": "paths: [\"**/*.test.tsx\"] → all test files ANYWHERE in repo", "size": 22}, {"text": "Benefits: less irrelevant context, fewer tokens", "size": 22}, {"text": "Rules beat subdirectory CLAUDE.md when convention spans MANY directories", "size": 24, "bold": true}, {"text": "E.g. test files scattered repo-wide — one glob rule covers all", "size": 20}]}, {"layout": "title_content", "title": "3.4 Plan Mode vs Direct Execution", "bullets": [{"text": "PLAN MODE: complex, multi-file, architectural decisions, several valid approaches", "size": 24, "bold": true}, {"text": "E.g. library migration touching 45+ files, microservice restructuring, integration choice", "size": 20}, {"text": "Explore + design BEFORE changing → prevents costly rework", "size": 22}, {"text": "DIRECT: simple, well-scoped, one clear fix", "size": 24, "bold": true}, {"text": "E.g. single-file bug fix with clear stack trace, add one validation check", "size": 20}, {"text": "Explore SUBAGENT: isolates verbose discovery, returns summary → protects main context", "size": 22}, {"text": "Common combo: plan mode for investigation → direct execution to implement", "size": 22}, {"text": "TRAP: plan mode for trivial fix = waste; direct for big refactor = risky", "size": 22, "color": "C00000"}]}, {"layout": "title_content", "title": "3.5 Iterative Refinement", "bullets": [{"text": "Concrete INPUT/OUTPUT examples beat prose — prose gets interpreted inconsistently", "size": 24, "bold": true}, {"text": "Give 2-3 examples when words alone fail", "size": 22}, {"text": "Test-driven: write tests FIRST → iterate by sharing test failures", "size": 24, "bold": true}, {"text": "Interview pattern: Claude asks YOU questions first → surfaces considerations you missed", "size": 24, "bold": true}, {"text": "Use in unfamiliar domains (cache invalidation strategy, failure modes)", "size": 20}, {"text": "INTERACTING problems → all issues in ONE message", "size": 24, "bold": true}, {"text": "INDEPENDENT problems → fix sequentially", "size": 24, "bold": true}, {"text": "Edge case fix: give specific test case (input + expected output), e.g. null handling", "size": 20}]}, {"layout": "title_content", "title": "3.6 CI/CD Integration", "bullets": [{"text": "-p (--print) flag = non-interactive mode → no hangs in pipelines", "size": 24, "bold": true}, {"text": "--output-format json + --json-schema → machine-parseable results", "size": 24, "bold": true}, {"text": "Use: structured findings → auto-post as inline PR comments", "size": 20}, {"text": "CLAUDE.md supplies CI context: testing standards, fixtures, review criteria", "size": 22}, {"text": "FRESH session reviews code — not the session that WROTE it", "size": 24, "bold": true}, {"text": "Self-review is weaker (biased by own reasoning context)", "size": 20}, {"text": "Re-review after new commit: include prior findings → report only NEW/unaddressed issues", "size": 22}, {"text": "Test generation: provide existing test files → no duplicate scenarios", "size": 20}]}, {"layout": "section", "title": "DOMAIN 4 — Prompt Eng & Structured Output (20%)"}, {"layout": "title_content", "title": "4.1 Explicit Criteria", "bullets": [{"text": "Vague: 'check comments are accurate' · 'be conservative' · 'high-confidence only' → FAIL", "size": 22, "color": "C00000"}, {"text": "Specific: 'flag comment ONLY when claimed behavior contradicts actual code behavior'", "size": 24, "bold": true}, {"text": "Define WHAT to report (bugs, security) and what to SKIP (minor style)", "size": 22}, {"text": "'Be conservative' improves NOTHING — only categorical criteria do", "size": 24, "bold": true}, {"text": "False positives destroy developer trust — even in accurate categories", "size": 22}, {"text": "Damaged trust fix: temporarily DISABLE high-false-positive category while improving it", "size": 22}, {"text": "Severity levels: concrete code examples per level → consistent classification", "size": 20}]}, {"layout": "title_content", "title": "4.2 Few-Shot Prompting", "bullets": [{"text": "MOST effective technique for consistent, correctly formatted output", "size": 24, "bold": true}, {"text": "When instructions alone produce inconsistent results → add examples", "size": 22}, {"text": "2-4 targeted examples for AMBIGUOUS cases", "size": 24, "bold": true}, {"text": "Show WHY one action chosen over alternative — models judgment, not answers", "size": 22}, {"text": "Examples teach FORMAT (location, issue, severity, fix) → consistency", "size": 22}, {"text": "Examples = acceptable patterns vs genuine issues → fewer false positives", "size": 22}, {"text": "Reduces hallucination in extraction (informal measurements, varied doc structures)", "size": 20}, {"text": "Generalizes to NOVEL cases — not just the shown ones", "size": 20}]}, {"layout": "title_content", "title": "4.3 Structured Output via Tool Use", "bullets": [{"text": "tool_use + JSON schema = MOST RELIABLE structured output", "size": 24, "bold": true}, {"text": "Eliminates JSON SYNTAX errors entirely", "size": 24, "bold": true}, {"text": "Does NOT prevent SEMANTIC errors (line items not summing to total, values in wrong fields)", "size": 24, "bold": true}, {"text": "tool_choice recap: auto = maybe text · any = must call some tool · forced = must call named tool", "size": 22}, {"text": "Unknown doc type, multiple schemas → tool_choice: any", "size": 20}, {"text": "Extraction before enrichment → forced {\"type\":\"tool\",\"name\":\"extract_metadata\"}", "size": 20}]}, {"layout": "title_content", "title": "4.3 Schema Design", "bullets": [{"text": "Field may not exist in source → make it OPTIONAL/NULLABLE", "size": 24, "bold": true}, {"text": "Required fields force model to FABRICATE values — avoid", "size": 24, "bold": true}, {"text": "Enums: add \"other\" + detail string field → extensible categories", "size": 22}, {"text": "Add \"unclear\" enum value for ambiguous cases", "size": 22}, {"text": "Pair prompts with schemas: format normalization rules handle messy source formatting", "size": 20}]}, {"layout": "title_content", "title": "4.4 Validation, Retry, Feedback Loops", "bullets": [{"text": "Retry WITH error feedback: append SPECIFIC validation errors to prompt on retry", "size": 24, "bold": true}, {"text": "Retry request includes: original doc + failed extraction + specific errors", "size": 22}, {"text": "Retries WORK for: format mismatches, structural errors", "size": 24, "bold": true}, {"text": "Retries FAIL when info ABSENT from source → distinguish these cases", "size": 24, "bold": true}, {"text": "detected_pattern field on findings → analyze false-positive patterns when devs dismiss them", "size": 22}, {"text": "Self-correction design: extract calculated_total AND stated_total → conflict_detected boolean", "size": 22}, {"text": "Semantic validation ≠ syntax validation (syntax already solved by tool use)", "size": 20}]}, {"layout": "title_content", "title": "4.5 Message Batches API", "bullets": [{"text": "50% cost savings · up to 24-hour window · NO latency guarantee", "size": 24, "bold": true}, {"text": "GOOD for: overnight reports, weekly audits, nightly test generation (latency-tolerant)", "size": 24, "bold": true}, {"text": "BAD for: blocking workflows, pre-merge checks → use synchronous API", "size": 24, "bold": true}, {"text": "NO multi-turn tool calling inside a batch request", "size": 24, "bold": true}, {"text": "custom_id field → correlate request/response pairs", "size": 22}, {"text": "Failures: resubmit ONLY failed docs (by custom_id), with fixes (chunk oversized docs)", "size": 22}, {"text": "SLA math: 30-hour SLA + 24h batch window → submit every 4 hours", "size": 22}, {"text": "Refine prompt on SAMPLE set first → max first-pass success", "size": 20}]}, {"layout": "title_content", "title": "4.6 Multi-Instance & Multi-Pass Review", "bullets": [{"text": "Self-review is WEAK — model trusts its own prior reasoning in same session", "size": 24, "bold": true}, {"text": "Independent FRESH instance (no generator context) catches subtle issues better", "size": 24, "bold": true}, {"text": "Beats even extended thinking + self-review instructions", "size": 20}, {"text": "Large review = multi-pass: per-file LOCAL passes + separate cross-file INTEGRATION pass", "size": 24, "bold": true}, {"text": "Why: attention dilution + contradictory findings in single mega-pass", "size": 20}, {"text": "Verification pass: model reports CONFIDENCE per finding → calibrated routing", "size": 22}]}, {"layout": "section", "title": "DOMAIN 5 — Context & Reliability (15%)"}, {"layout": "title_content", "title": "5.1 Context Window Management", "bullets": [{"text": "LOST IN THE MIDDLE: models use beginning + end of long input, DROP the middle", "size": 24, "bold": true}, {"text": "Fix: key findings summary at TOP, explicit section headers", "size": 22}, {"text": "Progressive summarization DANGER: numbers, dates, percentages, customer expectations become vague", "size": 24, "bold": true}, {"text": "Tool results ACCUMULATE and eat tokens (40 fields returned, 5 relevant)", "size": 22}, {"text": "Fix: trim tool output to relevant fields BEFORE it enters context", "size": 24, "bold": true}, {"text": "Persistent 'case facts' block (amounts, dates, order IDs, statuses) in every prompt — OUTSIDE the summary", "size": 22}, {"text": "ALWAYS pass complete conversation history per API request", "size": 20}, {"text": "Downstream agent tight on context? Upstream returns structured data (key facts, citations, relevance scores) not verbose reasoning", "size": 22}]}, {"layout": "title_content", "title": "5.2 Escalation Patterns", "bullets": [{"text": "Escalate when: customer ASKS for human · policy gap/ambiguity · no meaningful progress", "size": 24, "bold": true}, {"text": "Explicit human request → escalate IMMEDIATELY, no investigation first", "size": 24, "bold": true}, {"text": "Frustrated but solvable → acknowledge + offer fix; escalate only if they insist", "size": 22}, {"text": "Policy silent on the specific ask (competitor price match?) → escalate", "size": 22}, {"text": "Sentiment and self-reported confidence = UNRELIABLE complexity proxies", "size": 24, "bold": true}, {"text": "Tool returns MULTIPLE customer matches → ask for more identifiers, NEVER heuristic pick", "size": 24, "bold": true}, {"text": "Teach escalation judgment via few-shot examples in system prompt", "size": 20}]}, {"layout": "title_content", "title": "5.3 Error Propagation in Multi-Agent", "bullets": [{"text": "Error report to coordinator must include: failure type + attempted query + partial results + alternatives", "size": 24, "bold": true}, {"text": "Generic status ('search unavailable') hides recovery options", "size": 22, "color": "C00000"}, {"text": "Access failure ≠ valid empty result — label which one it was", "size": 24, "bold": true}, {"text": "Silent suppression (error dressed as empty success) = anti-pattern", "size": 22, "color": "C00000"}, {"text": "Whole workflow dies on one failure = anti-pattern", "size": 22, "color": "C00000"}, {"text": "Synthesis output carries COVERAGE annotations: well-supported findings vs gap areas", "size": 22}]}, {"layout": "title_content", "title": "5.4 Large Codebase Exploration", "bullets": [{"text": "Context DEGRADATION in long sessions: inconsistent answers, 'typical patterns' instead of specifics found earlier", "size": 24, "bold": true}, {"text": "SCRATCHPAD FILES: persist key findings to disk, reference later — survives context loss", "size": 24, "bold": true}, {"text": "Subagent delegation: verbose exploration isolated in subagents; main agent keeps high-level view", "size": 22}, {"text": "Phase summary → injected into next phase's subagents", "size": 22}, {"text": "Crash recovery: each agent exports state to known location; coordinator loads MANIFEST on resume", "size": 24, "bold": true}, {"text": "/compact command → shrink context mid-session when full of discovery output", "size": 22}]}, {"layout": "title_content", "title": "5.5 Human Review & Confidence", "bullets": [{"text": "97% OVERALL accuracy can hide 60% accuracy on ONE document type", "size": 24, "bold": true}, {"text": "Always break accuracy down BY document type and BY field", "size": 24, "bold": true}, {"text": "Stratified random sampling of high-confidence extractions → measure real error rate + catch novel patterns", "size": 24, "bold": true}, {"text": "Field-level confidence scores → calibrate thresholds on LABELED validation set", "size": 22}, {"text": "Route to human: low confidence + ambiguous/contradictory sources; prioritize reviewer capacity", "size": 22}, {"text": "Validate segments BEFORE reducing human review", "size": 22}]}, {"layout": "title_content", "title": "5.6 Provenance & Multi-Source Synthesis", "bullets": [{"text": "Summarization STEPS strip source attribution — findings arrive 'naked'", "size": 24, "bold": true}, {"text": "Subagents must output claim-SOURCE mappings (URL, doc name, excerpt) — synthesis preserves + merges them", "size": 24, "bold": true}, {"text": "Conflicting credible stats → ANNOTATE conflict with sources; never silently pick one", "size": 24, "bold": true}, {"text": "Temporal data: require publication/collection dates → date difference ≠ contradiction", "size": 22}, {"text": "Report structure: well-established findings section SEPARATE from contested ones", "size": 22}, {"text": "Render by type: financial = tables, news = prose, technical = structured lists", "size": 22}]}, {"layout": "section", "title": "FINAL — Memory Sheet"}, {"layout": "title_content", "title": "Numbers To Memorize", "bullets": [{"text": "60 questions · 120 minutes · pass 720/1000 · $125 · valid 12 months", "size": 24, "bold": true}, {"text": "Domain weights: 27 · 18 · 20 · 20 · 15", "size": 24, "bold": true}, {"text": "Batches API: 50% cheaper · 24h window · no SLA · no mid-batch tools", "size": 24, "bold": true}, {"text": "Tool count: 4-5 good · 18 bad", "size": 24, "bold": true}, {"text": "stop_reason values: tool_use / end_turn", "size": 24, "bold": true}, {"text": "tool_choice: auto / any / forced {type:tool,name:...}", "size": 24, "bold": true}, {"text": "Error categories: transient / validation / business / permission", "size": 24, "bold": true}, {"text": "Retake waits: 14 / 30 / 90 days", "size": 22}]}, {"layout": "title_content", "title": "Anti-Patterns (Always Wrong Answers)", "bullets": [{"text": "Stop loop on assistant text or iteration cap as primary mechanism", "size": 22, "color": "C00000"}, {"text": "Subagent-to-subagent direct chat (breaks hub-and-spoke)", "size": 22, "color": "C00000"}, {"text": "Assuming subagents inherit context automatically", "size": 22, "color": "C00000"}, {"text": "Generic error messages; treating errors as empty success; dying on one failure", "size": 22, "color": "C00000"}, {"text": "Prompt-based enforcement where guarantee required — use hooks", "size": 22, "color": "C00000"}, {"text": "Required schema fields for possibly-absent data (fabrication)", "size": 22, "color": "C00000"}, {"text": "Retrying when information is absent from source", "size": 22, "color": "C00000"}, {"text": "Batch API for blocking/pre-merge workloads", "size": 22, "color": "C00000"}, {"text": "Self-review of own generated code in same session", "size": 22, "color": "C00000"}, {"text": "Vague criteria: 'be conservative', 'high confidence only'", "size": 22, "color": "C00000"}, {"text": "Heuristic pick among multiple customer matches", "size": 22, "color": "C00000"}, {"text": "Secrets committed in .mcp.json — use ${ENV_VAR}", "size": 22, "color": "C00000"}]}, {"layout": "title_content", "title": "File Locations Cheat Sheet", "bullets": [{"text": "~/.claude/CLAUDE.md — user memory (private)", "size": 22}, {"text": "CLAUDE.md / .claude/CLAUDE.md — project memory (shared)", "size": 22}, {"text": ".claude/rules/ — conditional rules, YAML frontmatter + paths globs", "size": 22}, {"text": ".claude/commands/ vs ~/.claude/commands/ — shared vs personal commands", "size": 22}, {"text": ".claude/skills/ — SKILL.md + frontmatter (context: fork, allowed-tools, argument-hint)", "size": 22}, {"text": ".mcp.json — project MCP servers (shared, ${ENV} expansion)", "size": 22}, {"text": "~/.claude.json — user MCP servers (personal)", "size": 22}, {"text": "--resume <name> · fork_session · /compact · /memory", "size": 22}]}, {"layout": "title_content", "title": "Exam Strategy", "bullets": [{"text": "Scenario questions: ask 'what guarantees does this need?' — guaranteed → programmatic (hooks, forced tool_choice, schemas)", "size": 22}, {"text": "Probabilistic OK → prompts, examples, guidance", "size": 22}, {"text": "Cost/latency tradeoffs: batch = cheap+slow, sync = expensive+instant", "size": 22}, {"text": "Trust answers: stop_reason, isError, errorCategory, custom_id, detected_pattern, conflict_detected", "size": 22}, {"text": "When two answers both 'work' — pick the one with STRUCTURE (explicit criteria, schema, summary block)", "size": 22}, {"text": "Flag & skip hard ones · 2 min/question average · no negative marking", "size": 22}, {"text": "Next: free mock at claudecertificationguide.com/mock-exam — target 80%+ before booking", "size": 22}]}];
+const ICONS = { 1: "D1", 2: "D2", 3: "D3", 4: "D4", 5: "D5", 6: "★" };
+const els = {
+  slide: document.getElementById("slide"),
+  count: document.getElementById("count"),
+  prog: document.querySelector("#prog div, #prog"),
+  chips: document.getElementById("chips"),
+  main: document.getElementById("main"),
+  prev: document.getElementById("prev"),
+  next: document.getElementById("next"),
+};
+const SECTIONS = SLIDES.map((s, i) => s.layout === "section" ? i : -1).filter(i => i >= 0);
 
-  <a class="card" href="guide.txt">
-    <span class="icon">📄</span>
-    <span class="info">
-      <span class="name">Exam Guide (text)</span>
-      <span class="desc">Full official guide, v1.0 — reads in browser</span>
-    </span>
-  </a>
+SLIDES.forEach((s, i) => {
+  if (s.layout !== "section") return;
+  const b = document.createElement("button");
+  const n = SECTIONS.indexOf(i);
+  b.textContent = ICONS[n + 1] + " " + s.title.replace(/^DOMAIN\s*\d+\s*—\s*|\s*\(\d+%\)$/g, "").split(" ")[0];
+  b.onclick = () => go(i);
+  els.chips.appendChild(b);
+});
 
-  <a class="card" href="CCA-F_Exam_Guide.pdf">
-    <span class="icon">📕</span>
-    <span class="info">
-      <span class="name">Exam Guide (PDF)</span>
-      <span class="desc">Official guide with layout preserved</span>
-    </span>
-  </a>
+function render(n) {
+  const s = SLIDES[n];
+  const el = els.slide;
+  el.className = "slide " + (s.layout === "title" ? "title-slide" : s.layout === "section" ? "section-slide" : "content-slide");
+  let html = "";
+  if (s.layout === "title") {
+    html = "<h1>" + esc(s.title) + "</h1><p class=subtitle>" + esc(s.subtitle || "") + "</p>";
+  } else if (s.layout === "section") {
+    html = "<h2>" + esc(s.title) + "</h2>";
+  } else {
+    html = "<h2>" + esc(s.title) + "</h2><ul>" + (s.bullets || []).map(b =>
+      "<li class=\"s" + (b.size || 20) + (b.color === "C00000" ? " trap" : "") + "\">" + esc(b.text) + "</li>"
+    ).join("") + "</ul>";
+  }
+  el.innerHTML = html;
+  els.count.textContent = (n + 1) + "/" + SLIDES.length;
+  els.prog.style.width = (100 * (n + 1) / SLIDES.length) + "%";
+  els.prev.disabled = n === 0;
+  els.next.disabled = n === SLIDES.length - 1;
+  document.querySelectorAll(".chips button").forEach((b, i) =>
+    b.classList.toggle("here", SECTIONS[i] <= n && (i === SECTIONS.length - 1 || SECTIONS[i + 1] > n)));
+  document.querySelector(".chips button.here")?.scrollIntoView({ block: "nearest", inline: "center" });
+  els.main.scrollTop = 0;
+  history.replaceState(null, "", "#" + (n + 1));
+}
+function esc(t) { const d = document.createElement("div"); d.textContent = t; return d.innerHTML; }
+function go(n) { n = Math.max(0, Math.min(SLIDES.length - 1, n)); render(n); }
 
-  <a class="card" href="CCAR-F_Study_Deck.pptx">
-    <span class="icon">📊</span>
-    <span class="info">
-      <span class="name">Study Deck (51 slides)</span>
-      <span class="desc">PPTX download — opens in Office/Slides apps</span>
-    </span>
-  </a>
-
-  <footer>Barun's study materials · updated Sep 2026</footer>
-</main>
+els.prev.onclick = () => go(cur() - 1);
+els.next.onclick = () => go(cur() + 1);
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight" || e.key === " ") go(cur() + 1);
+  if (e.key === "ArrowLeft") go(cur() - 1);
+});
+let x0 = null;
+addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+addEventListener("touchend", e => {
+  if (x0 === null) return;
+  const dx = e.changedTouches[0].clientX - x0;
+  if (Math.abs(dx) > 55 && els.main.scrollTop < 4) go(cur() + (dx < 0 ? 1 : -1));
+  x0 = null;
+}, { passive: true });
+function cur() { return parseInt(location.hash.slice(1)) - 1 || 0; }
+addEventListener("hashchange", () => render(cur()));
+render(cur());
+</script>
 </body>
 </html>
