@@ -20,6 +20,9 @@
   --font-body: 'Inter', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  /* Easing tokens */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* Base Styles */
@@ -225,7 +228,7 @@ a:hover {
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
 }
 .card:hover {
   transform: translateY(-2px);
@@ -322,7 +325,7 @@ a:hover {
   border: 1px solid var(--border-dark);
   border-radius: 50%;
   color: var(--text-secondary-dark);
-  transition: all 0.2s ease;
+  transition: border-color 0.2s var(--ease-out), color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
 }
 .social-links a:hover {
   border-color: var(--accent-cyan);
@@ -359,7 +362,7 @@ a:hover {
   padding: 1.5rem;
   text-align: left;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
 }
 .stat-tile:hover {
   transform: translateY(-3px);
@@ -419,7 +422,7 @@ section {
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease;
+  transition: transform 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
   display: flex;
   flex-direction: column;
   height: 100%;
