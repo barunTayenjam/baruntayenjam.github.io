@@ -1,0 +1,30 @@
+# Barun Tayenjam
+# Technical Lead | Web Security · API Architecture · AI-Driven Development
+
+15+ years architecting secure, high-performance web platforms. I lead teams to ship faster with hardened APIs, automated CI/CD, and AI-assisted engineering.
+
+## Impact Stats
+- 15+ years architecting web platforms
+- 99.99% uptime secure production systems
+- 20+ hrs/wk automation reclaimed
+- 10+ devs mentored to senior
+- 4 tools open-source shipped
+
+## Repositories
+### gitops (One-command git automation with AI. Generates commit messages via Groq or Ollama — adopted across the team to standardize hygiene and cut time spent on commits.) — https://github.com/barungrazitti/gitops JS, Groq, Ollama
+
+### JiraGrok (AI Chrome extension summarizing JIRA tickets using Groq (Llama 3.3). Cuts context-switching and ticket-triage time for PMs and engineers.) — https://github.com/barungrazitti/JiraGrok JS, Groq, AI
+
+### wordpress-matrix (Production-ready WordPress dev environment via Docker. One command from clone to running stack — zero-toil onboarding for new devs.) — https://github.com/baruntayenjam/wordpress-matrix Docker, WordPress
+
+### casa-visitor-guardian (TypeScript visitor management and physical-security system. Role-based access, audit logging.) — https://github.com/baruntayenjam/casa-visitor-guardian TypeScript, Security
+
+### Tech Lead Notes (Weekly notes on developer experience, automation, and engineering decisions. The writing behind the work.) — https://baruntayenjam.github.io Jekyll, Writing
+
+### manipur-economy (Economic research and visualization platform.) — https://github.com/baruntayenjam/manipur-economy HTML, Research
+
+### SentryVision (Real-time error tracking and alerting dashboard — placeholder entry.) — https://github.com/baruntayenjam/SentryVision TS, Monitoring
+
+## Contact
+- Email: barun.2009.tam at gmail.com
+- Location: Imphal West, Manipur, India

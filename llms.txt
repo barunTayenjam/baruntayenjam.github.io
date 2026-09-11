@@ -1,0 +1,33 @@
+# Barun Tayenjam
+
+> Technical Lead with 15+ years of experience architecting secure web platforms, automating DevOps toil, and integrating AI-assisted engineering workflows.
+
+## Profile
+- Role: Technical Lead at Grazitti Interactive (Mar 2025 – Present)
+- Prior: Senior Software Engineer (SearchUnify Website, Docs, WordPress Connector)
+- Location: Imphal West, Manipur, India
+- Website: https://baruntayenjam.github.io
+- GitHub: https://github.com/baruntayenjam
+- Work GitHub: https://github.com/barungrazitti
+- LinkedIn: https://www.linkedin.com/in/barun-tayenjam
+- Uptime: 99.99% enterprise production availability
+- Automation: 20+ hours/week toil eliminated across engineering teams
+
+## Core Skills
+- Web Security & Hardened REST/GraphQL API Design
+- CI/CD, Containerization (Docker, Kubernetes) & Observability
+- AI Engineering & LLM Integration (Groq, Llama, Ollama, OpenAI)
+- Developer Experience (DX) & Internal CLI Tooling
+- Team Leadership & Mentoring (10+ engineers to senior)
+
+## Open Source Repositories
+- [gitops](https://github.com/barungrazitti/gitops): AI git commit automation using Groq / Ollama.
+- [JiraGrok](https://github.com/barungrazitti/JiraGrok): Chrome extension summarizing JIRA tickets with Llama 3.3.
+- [wordpress-matrix](https://github.com/baruntayenjam/wordpress-matrix): Containerized WordPress environment with Docker.
+- [casa-visitor-guardian](https://github.com/baruntayenjam/casa-visitor-guardian): TypeScript visitor management and physical security platform.
+- [manipur-economy](https://github.com/baruntayenjam/manipur-economy): Economic research and visualization platform.
+
+## Technical Writing
+- [Building a commit galaxy from 15 years of git history](https://baruntayenjam.github.io/blog/building-commit-galaxy)
+- [One-command git automation with AI](https://baruntayenjam.github.io/blog/one-command-git-automation)
+- [Automating DevOps toil: the 20 hrs/week math](https://baruntayenjam.github.io/blog/automating-devops-toil)
