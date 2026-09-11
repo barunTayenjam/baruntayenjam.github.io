@@ -3,7 +3,7 @@
     "name": "Barun Tayenjam",
     "title": "Technical Lead",
     "subtitle": "Web Security · API Architecture · AI-Driven Development",
-    "headline": "15+ years architecting secure, high-performance web platforms. I lead teams to ship faster with hardened APIs, automated CI/CD, and AI-enhanced workflows like Vive Coding.",
+    "headline": "15+ years architecting secure, high-performance web platforms. I lead teams to ship faster with hardened APIs, automated CI/CD, and AI-assisted engineering.",
     "tagline": "Architecting secure web platforms · automating deployment pipelines · mentoring teams",
     "introLine": "SECURE SCALABLE WEB PLATFORMS."
   },
@@ -23,7 +23,7 @@
   "valueProps": [
     { "title": "Secure by design", "desc": "Production-hardened web platforms with web-security best practices baked in — from API design to defense-in-depth, trusted by enterprise clients." },
     { "title": "Ship faster, break less", "desc": "Automated CI/CD, SearchUnify-scale deployments, and workflow automation that reclaim 20+ hours/week for engineering teams." },
-    { "title": "AI-native development", "desc": "Leading teams into AI-enhanced workflows — LLM integration, Vive Coding, and tooling that compounds developer productivity." },
+    { "title": "AI-native development", "desc": "Leading teams into AI-enhanced workflows — LLM integration, AI-assisted engineering, and tooling that compounds developer productivity." },
     { "title": "Lift the whole team", "desc": "Mentorship that turns juniors into seniors, plus open-source dev tools adopted across teams to remove daily friction." }
   ],
   "cta": {
@@ -40,7 +40,8 @@
 { "role": "Technical Lead", "company": "Grazitti Interactive", "period": "Mar 2025 - Present", "achievements": [
       "Leading development teams to build scalable, secure, and high-performance web solutions",
       "Mentoring developers on best practices, web security, and API design",
-      "Driving tech stack evolution with Node.js, PHP, and AI-driven methodologies"
+      "Driving tech stack evolution with Node.js, PHP, and AI-driven methodologies",
+      "Contributor, ROTSSSTLS 2025"
     ] },
     { "role": "Senior Software Engineer", "company": "Grazitti Interactive", "period": "Apr 2019 - Mar 2025", "achievements": [
       "Responsible for development of the SearchUnify Website and Docs site",
@@ -63,17 +64,18 @@
     ] }
   ],
   "education": [
-    { "degree": "MBA, Information Technology", "institution": "Lovely Professional University", "year": "2017" },
+    { "degree": "B.Sc. Information Technology", "institution": "DAV College Jalandhar", "year": "" },
     { "degree": "BCA, First Division", "institution": "Punjab Technical University", "year": "2014" },
-    { "degree": "B.Sc. Information Technology", "institution": "DAV College Jalandhar", "year": "" }
-    ],
-    "stats": {
-    "commits2025": 588,
+    { "degree": "MBA, Information Technology", "institution": "Lovely Professional University", "year": "2017" }
+  ],
+  "stats": {
+    "commitsAlltime": 752,
     "reposManaged": 8,
     "uptime": "99.99%"
-    },
+  },
     "contact": {
-    "email": "barun.2009.tam@gmail.com",
+    "emailUser": "barun.2009.tam",
+    "emailDomain": "gmail.com",
     "birthday": "September 15",
     "location": "Imphal West, Manipur, India"
     },
@@ -115,7 +117,7 @@
       "desc": "AI-powered CSS optimizer & linter. Detects unused rules and dead specificity so devs ship leaner bundles with less manual review.",
       "color": "#06b6d4",
       "stack": ["JS", "CSS", "AI"],
-      "featured": true
+      "featured": false
     },
     "wordpress-matrix": {
       "title": "wordpress-matrix",
@@ -161,7 +163,16 @@
       "desc": "Economic research and visualization platform.",
       "color": "#3b82f6",
       "stack": ["HTML", "Research"],
-      "featured": false
+      "featured": true
+    },
+    "SentryVision": {
+      "title": "SentryVision",
+      "path": "github.com/baruntayenjam/SentryVision",
+      "url": "https://github.com/baruntayenjam/SentryVision",
+      "desc": "Real-time error tracking and alerting dashboard — placeholder entry.",
+      "color": "#8b5cf6",
+      "stack": ["TS", "Monitoring"],
+      "featured": true
     },
     "taskapi": {
       "title": "taskapi",
@@ -183,7 +194,7 @@
     }
   },
   "seo": {
-    "description": "Barun Tayenjam — Technical Lead with 12+ years experience building developer tools and automating DevOps toil so teams ship secure AI products faster. 4 open-source dev tools, 20+ hrs/week automated, 10+ devs mentored, 99.99% uptime.",
+    "description": "Barun Tayenjam — Technical Lead with 15+ years experience building developer tools and automating DevOps toil so teams ship secure AI products faster. 4 open-source dev tools, 20+ hrs/week automated, 10+ devs mentored, 99.99% uptime.",
     "keywords": "Technical Lead, Developer Experience, DX, Developer Productivity, Internal Developer Tools, Platform Engineering, DevOps Automation, CI/CD, AI Web Security, LLM Integration, Site Reliability, Chandigarh, Barun Tayenjam",
     "ogTitle": "Barun Tayenjam — Technical Lead · Developer Experience & DevOps",
     "ogDescription": "I build developer tools and automate DevOps toil so teams ship secure AI products faster. 4 open-source tools · 20+ hrs/wk saved · 99.99% uptime.",

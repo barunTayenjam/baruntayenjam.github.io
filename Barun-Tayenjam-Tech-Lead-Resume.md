@@ -1,12 +1,12 @@
 # Barun Tayenjam
-**Technical Lead** · Web Security & API Specialist · AI & Vive Coding Enthusiast
+**Technical Lead** · Web Security & API Specialist · AI & AI-assisted engineering enthusiast
 Imphal West, Manipur, India · [Email](mailto:barun.2009.tam@gmail.com)
 [LinkedIn](https://www.linkedin.com/in/barun-tayenjam) · [GitHub](https://github.com/baruntayenjam) · [Portfolio](https://baruntayenjam.github.io)
 
 ---
 
 ## Professional Profile
-Technical Lead with 15+ years architecting scalable, secure web solutions. Solid foundation in WordPress, PHP, MySQL, JavaScript, and Node.js API development — now driving design and implementation of robust, secure applications at scale. Passionate about advancing web security and API best practices, mentoring teams on coding standards, and harnessing AI-driven development paradigms like Vive Coding to accelerate innovation.
+Technical Lead with 15+ years architecting scalable, secure web solutions. Solid foundation in WordPress, PHP, MySQL, JavaScript, and Node.js API development — now driving design and implementation of robust, secure applications at scale. Passionate about advancing web security and API best practices, mentoring teams on coding standards, and harnessing AI-assisted engineering to accelerate innovation.
 
 Currently leading day-to-day development while empowering teams through mentorship on web security and coding best practices. Exploring the intersection of traditional coding expertise and AI-enhanced development to redefine how software is built and maintained.
 
@@ -25,7 +25,7 @@ Currently leading day-to-day development while empowering teams through mentorsh
 - **Languages:** JavaScript, TypeScript, Python, PHP, Bash, SQL
 - **Web Stack:** Node.js, WordPress, React, REST APIs, GraphQL, Tailwind CSS
 - **Cloud & DevOps:** Docker, Kubernetes, CI/CD (GitHub Actions, GitLab), GitOps, Linux, Nginx
-- **AI Engineering:** LLM Integration (OpenAI, Groq, Ollama, Llama), Vive Coding, Prompt Engineering, LLM Guardrails, Observability
+- **AI Engineering:** LLM Integration (OpenAI, Groq, Ollama, Llama), AI-assisted engineering, Prompt Engineering, LLM Guardrails, Observability
 - **Databases & Observability:** MySQL, PostgreSQL, Redis, Prometheus, Grafana
 - **Leadership:** Architecture Design, Web Security, Incident Response, Secure Coding Training, Code Review, On-call Runbooks
 
@@ -37,7 +37,7 @@ Currently leading day-to-day development while empowering teams through mentorsh
 - Guiding development teams to build scalable, secure, high-performance web solutions.
 - Overseeing development processes, managing projects, ensuring timely delivery of robust software.
 - Mentoring developers on best practices, web security, and API design to foster continuous growth.
-- Driving tech stack evolution — API development using Node.js and PHP, integrating AI-driven methodologies (Vive Coding) to optimize workflows.
+- Driving tech stack evolution — API development using Node.js and PHP, integrating AI-driven methodologies (AI-assisted engineering) to optimize workflows.
 - Implementing coding standards, security measures, and QA processes across systems.
 
 **Senior Software Engineer** · Grazitti Interactive · Apr 2019 – Mar 2025

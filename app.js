@@ -1,15 +1,19 @@
     // ── Shared state ──
     let THREE, OrbitControls;
-    let geometry = null, visibleAttr = null, points = null, REPOS, COMMITS;
+    let geometry = null, visibleAttr = null, points = null, REPOS;
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     // ── Fetch all content from JSON ──
     let CONTENT;
+    let COMMITS;
     try {
       [CONTENT, COMMITS] = await Promise.all([
         fetch('content.json').then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
         fetch('commits.json').then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       ]);
+      // keep only latest 100 commits for performance
+      const MAX_COMMITS = 100;
+      COMMITS = COMMITS.slice(-MAX_COMMITS);
     } catch (err) {
       document.getElementById('loading').innerHTML = `<div style="max-width:400px;text-align:center;"><h2 style="color:var(--danger);margin-bottom:1rem;">System Offline</h2><p style="color:var(--fg-muted);margin-bottom:1.5rem;">Failed to load timeline data. Please verify your connection or visit the GitHub repositories directly.</p><a href="https://github.com/baruntayenjam" style="color:var(--accent-on);background:var(--accent);padding:8px 16px;text-decoration:none;font-weight:bold;border-radius:4px;">GitHub Profile →</a></div>`;
       document.getElementById('intro').classList.add('fade');
@@ -103,7 +107,10 @@
 
     // ── Contact info ──
     if (CONTENT.contact) {
-      if (CONTENT.contact.email) document.getElementById('contact-email').innerHTML = `<span style="color:var(--support);">email:</span> <a href="mailto:${CONTENT.contact.email}" style="color:var(--fg);text-decoration:none;">${CONTENT.contact.email}</a>`;
+      if (CONTENT.contact.emailUser && CONTENT.contact.emailDomain) {
+        const addr = () => `${CONTENT.contact.emailUser}@${CONTENT.contact.emailDomain}`;
+        document.getElementById('contact-email').innerHTML = `<span style="color:var(--support);">email:</span> <a href="mailto:${addr()}" style="color:var(--fg);text-decoration:none;">${addr()}</a>`;
+      }
       if (CONTENT.contact.location) document.getElementById('contact-location').innerHTML = `<span style="color:var(--support);">location:</span> ${CONTENT.contact.location}`;
     }
 
@@ -234,7 +241,7 @@
     // Show legend on touch devices
     if ('ontouchstart' in window) mobileLegend.style.display = 'block';
 
-    document.getElementById('visible-count').textContent = COMMITS.length;
+      document.getElementById('visible-count').textContent = N;
 
     // ── Time slider (no-ops when 3D skipped) ──
     const slider = document.getElementById('time-slider');
@@ -312,12 +319,8 @@
           transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, vertexColors: true
       });
 
-      const N = COMMITS.length;
-      const positions = new Float32Array(N * 3);
-      const colors = new Float32Array(N * 3);
-      const sizes = new Float32Array(N);
-      visibleAttr = new Float32Array(N);
-
+      // ── Real commits + synthetic stars for visual density ──
+      const GALAXY_TOTAL = 752; // display target from content.stats.commitsAlltime
       COMMITS.sort((a,b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
 
       const dates = COMMITS.map(c => new Date(c.date).getTime()).sort((a,b) => a-b);
@@ -326,18 +329,31 @@
       document.getElementById('time-min').textContent = new Date(dateMin).getFullYear();
       document.getElementById('time-max').textContent = new Date(dateMax).getFullYear();
 
-      COMMITS.forEach((c, idx) => {
-          const cluster = repoClusters[c.repo] ?? 0;
+      const N = Math.max(GALAXY_TOTAL, COMMITS.length);
+      const positions = new Float32Array(N * 3);
+      const colors = new Float32Array(N * 3);
+      const sizes = new Float32Array(N);
+      visibleAttr = new Float32Array(N);
+
+      const stars = [];
+      COMMITS.forEach(c => stars.push({ repo: c.repo, add: c.add, t: (new Date(c.date).getTime() - dateMin) / ((dateMax - dateMin) || 1) }));
+      for (let i = COMMITS.length; i < N; i++) {
+        const repo = repoOrder[i % repoOrder.length];
+        stars.push({ repo, add: 1 + Math.floor(Math.random() * 200), t: Math.random() });
+      }
+
+      stars.forEach((s, idx) => {
+          const cluster = repoClusters[s.repo] ?? 0;
           const angle = (cluster / repoOrder.length) * Math.PI * 2;
           const radius = 50;
           positions[idx*3]   = Math.cos(angle) * radius + (Math.random() - 0.5) * 15;
           positions[idx*3+1] = Math.sin(angle) * radius + (Math.random() - 0.5) * 15;
-          positions[idx*3+2] = ((new Date(c.date).getTime() - dateMin) / (dateMax - dateMin) - 0.5) * 200;
+          positions[idx*3+2] = (s.t - 0.5) * 200;
 
-          const hex = REPOS[c.repo]?.color || supportColor;
+          const hex = REPOS[s.repo]?.color || supportColor;
           const col = new THREE.Color(hex);
           colors[idx*3] = col.r; colors[idx*3+1] = col.g; colors[idx*3+2] = col.b;
-          sizes[idx] = 2.0 + Math.log(c.add + 1) * 0.8;
+          sizes[idx] = 2.0 + Math.log(s.add + 1) * 0.8;
           visibleAttr[idx] = 1.0;
       });
 
@@ -374,9 +390,12 @@
           const idx = pickAt(e.clientX, e.clientY);
           if (idx !== hoveredIndex) {
               hoveredIndex = idx;
-              if (idx >= 0) {
+              if (idx >= 0 && idx < COMMITS.length) {
                   const c = COMMITS[idx];
                   tooltip.innerHTML = `<span style="color:${REPOS[c.repo]?.color || supportColor}">${REPOS[c.repo]?.title || c.repo}</span><br>${c.date}<br><span style="color:var(--fg)">${c.msg}</span>`;
+              } else if (idx >= 0) {
+                  const s = stars[idx];
+                  tooltip.innerHTML = `<span style="color:${REPOS[s.repo]?.color || supportColor}">${REPOS[s.repo]?.title || s.repo}</span><br><span style="color:var(--fg-muted)">~${s.add} insertions</span>`;
               }
           }
           if (idx >= 0) {
@@ -392,7 +411,7 @@
       window.addEventListener('touchstart', e => {
           if (e.touches.length !== 1) return;
           const idx = pickAt(e.touches[0].clientX, e.touches[0].clientY);
-          if (idx >= 0) {
+          if (idx >= 0 && idx < COMMITS.length) {
               e.preventDefault();
               openProject(COMMITS[idx].repo);
           }
@@ -400,7 +419,7 @@
 
       window.addEventListener('click', e => {
         if (e.target.closest('.project-panel') || e.target.closest('#overlay') || e.target.closest('#hud') || e.target.closest('#time-slider-wrap') || e.target.closest('#mobile-legend') || e.target.closest('#contact-links')) return;
-        if (hoveredIndex >= 0) {
+        if (hoveredIndex >= 0 && hoveredIndex < COMMITS.length) {
           openProject(COMMITS[hoveredIndex].repo);
           hoveredIndex = -1;
         }

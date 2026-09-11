@@ -1,0 +1,20 @@
+name: Build Resume PDF
+on:
+  push:
+    paths: [build-resume.py, Barun-Tayenjam-Tech-Lead-Resume.md]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install markdown weasyprint
+      - run: python build-resume.py
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: regenerate resume PDF"
+          file_pattern: Barun-Tayenjam-Tech-Lead-Resume.pdf
