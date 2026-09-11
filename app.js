@@ -1,6 +1,7 @@
     // ── Shared state ──
     let THREE, OrbitControls;
     let geometry = null, visibleAttr = null, points = null, REPOS;
+    const GALAXY_TOTAL = 752; // display target from content.stats.commitsAlltime
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     // ── Fetch all content from JSON ──
@@ -241,19 +242,21 @@
     // Show legend on touch devices
     if ('ontouchstart' in window) mobileLegend.style.display = 'block';
 
-      document.getElementById('visible-count').textContent = N;
+      document.getElementById('visible-count').textContent = GALAXY_TOTAL;
 
     // ── Time slider (no-ops when 3D skipped) ──
+    // ── Time slider ──
     const slider = document.getElementById('time-slider');
     let dateMin = null, dateMax = null;
+    let stars = [];
     slider.addEventListener('input', e => {
       if (!geometry || !visibleAttr) return;
       const timeFilter = parseFloat(e.target.value) / 100;
       const cutoff = dateMin + (dateMax - dateMin) * timeFilter;
       let vis = 0;
-      for (let j = 0; j < COMMITS.length; j++) {
-        const commitDate = new Date(COMMITS[j].date).getTime();
-        const isVisible = commitDate <= cutoff ? 1 : 0;
+      for (let j = 0; j < stars.length; j++) {
+        const starTime = dateMin + stars[j].t * (dateMax - dateMin);
+        const isVisible = starTime <= cutoff ? 1 : 0;
         visibleAttr[j] = isVisible;
         vis += isVisible;
       }
@@ -320,7 +323,6 @@
       });
 
       // ── Real commits + synthetic stars for visual density ──
-      const GALAXY_TOTAL = 752; // display target from content.stats.commitsAlltime
       COMMITS.sort((a,b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
 
       const dates = COMMITS.map(c => new Date(c.date).getTime()).sort((a,b) => a-b);
@@ -335,7 +337,6 @@
       const sizes = new Float32Array(N);
       visibleAttr = new Float32Array(N);
 
-      const stars = [];
       COMMITS.forEach(c => stars.push({ repo: c.repo, add: c.add, t: (new Date(c.date).getTime() - dateMin) / ((dateMax - dateMin) || 1) }));
       for (let i = COMMITS.length; i < N; i++) {
         const repo = repoOrder[i % repoOrder.length];
