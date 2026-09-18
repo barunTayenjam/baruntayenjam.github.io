@@ -4,6 +4,9 @@ on:
     paths: [build-resume.py, Barun-Tayenjam-Tech-Lead-Resume.md]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest

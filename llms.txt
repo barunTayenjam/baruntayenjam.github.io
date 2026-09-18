@@ -1,6 +1,6 @@
 # Barun Tayenjam
 
-> Technical Lead with 15+ years of experience architecting secure web platforms, automating DevOps toil, and integrating AI-assisted engineering workflows.
+> Technical Lead with 15+ years of experience architecting secure web platforms, martech integrations (Adobe Marketo Engage, Zoho Deluge, Google Apps Script), DevOps automation, and AI-assisted engineering workflows.
 
 ## Profile
 - Role: Technical Lead at Grazitti Interactive (Mar 2025 – Present)
@@ -12,22 +12,31 @@
 - LinkedIn: https://www.linkedin.com/in/barun-tayenjam
 - Uptime: 99.99% enterprise production availability
 - Automation: 20+ hours/week toil eliminated across engineering teams
+- Conference: Contributor — ROTSSSTLS 2025 (Manipur University, Imphal)
 
 ## Core Skills
 - Web Security & Hardened REST/GraphQL API Design
+- Martech: Adobe Marketo Engage (REST API), Zoho Deluge, Google Apps Script
 - CI/CD, Containerization (Docker, Kubernetes) & Observability
-- AI Engineering & LLM Integration (Groq, Llama, Ollama, OpenAI)
+- AI Engineering & LLM Integration (Groq, Llama, Ollama, n8n, MCP, Agentic RAG)
 - Developer Experience (DX) & Internal CLI Tooling
 - Team Leadership & Mentoring (10+ engineers to senior)
+
+## Case Studies
+- 449% → 49% CPU on multi-camera AI vision platform (casa-visitor-guardian)
+- 99.99% uptime on SearchUnify enterprise search web platform
+- 20+ hrs/week reclaimed via GitOps automation (gitops)
 
 ## Open Source Repositories
 - [gitops](https://github.com/barungrazitti/gitops): AI git commit automation using Groq / Ollama.
 - [JiraGrok](https://github.com/barungrazitti/JiraGrok): Chrome extension summarizing JIRA tickets with Llama 3.3.
+- [StarkCSS](https://github.com/barungrazitti/StarkCSS): AI-powered CSS optimizer detecting unused rules.
+- [year-in-code](https://github.com/barungrazitti/year-in-code): GitLab/GitHub year-in-review generator.
 - [wordpress-matrix](https://github.com/baruntayenjam/wordpress-matrix): Containerized WordPress environment with Docker.
 - [casa-visitor-guardian](https://github.com/baruntayenjam/casa-visitor-guardian): TypeScript visitor management and physical security platform.
 - [manipur-economy](https://github.com/baruntayenjam/manipur-economy): Economic research and visualization platform.
 
 ## Technical Writing
-- [Building a commit galaxy from 15 years of git history](https://baruntayenjam.github.io/blog/building-commit-galaxy)
-- [One-command git automation with AI](https://baruntayenjam.github.io/blog/one-command-git-automation)
-- [Automating DevOps toil: the 20 hrs/week math](https://baruntayenjam.github.io/blog/automating-devops-toil)
+- [Building a commit galaxy from 15 years of git history](https://baruntayenjam.github.io/blog/building-commit-galaxy.html)
+- [One-command git automation with AI](https://baruntayenjam.github.io/blog/one-command-git-automation.html)
+- [Automating DevOps toil: the 20 hrs/week math](https://baruntayenjam.github.io/blog/automating-devops-toil.html)

@@ -4,6 +4,9 @@ on:
     paths: [app.js, style.css]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   minify:
     runs-on: ubuntu-latest

@@ -1,1 +1,802 @@
-[{"hash":"da4a4146","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(detection): add lowResourceMode and ffmpegThre","add":2,"del":0},{"hash":"d72ec0df","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(settings): convert motion settings to local st","add":132,"del":127},{"hash":"93edd047","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(settings): add light/system theme options and ","add":13,"del":1},{"hash":"70ceec67","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"12-04-T6: HL-004 — Implement Fullscreen toggle and","add":16,"del":1},{"hash":"40785b11","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"12-04-T5: ANA-008 — Add empty state placeholder fo","add":31,"del":25},{"hash":"80f7c3db","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"12-04-T4: ANA-007 — Honor startDate/endDate in hou","add":32,"del":13},{"hash":"8d974b6a","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"12-04-T3: ANA-006 — Fix motion count in pie chart ","add":5,"del":2},{"hash":"5143d702","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"12-04-T2: ANA-004 — Remove dead response time endp","add":0,"del":37},{"hash":"0fbadc67","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"12-04-T1: ANA-002 — Replace hardcoded 0.5MB storag","add":51,"del":3},{"hash":"8f56acab","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(events): EVT-024 confidence badge in grid/list","add":8,"del":2},{"hash":"7d670d67","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(events): EVT-026 config-based paths for file r","add":4,"del":4},{"hash":"13339c4c","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(events): EVT-025 showing X of Y count display","add":12,"del":5},{"hash":"c0ce964c","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(events): EVT-015 LIKE leading wildcard","add":1,"del":1},{"hash":"e47d071b","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(events): EVT-014 reset page to 1 on filter cha","add":4,"del":1},{"hash":"cd667d1c","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(events): EVT-012 EVT-013 EVT-020 timeline UI","add":20,"del":2},{"hash":"8cdcf719","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(events): EVT-011 use ProgressiveImage in Relat","add":2,"del":1},{"hash":"3be57a0e","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(events): EVT-006 EVT-016 EVT-019 timezone fixe","add":3,"del":6},{"hash":"cf952eca","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(events): EVT-005 optimize image serving fs.exi","add":17,"del":13},{"hash":"2ac75a1c","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(events): EVT-003 share handler + EVT-024 confi","add":30,"del":4},{"hash":"3e790abf","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-02): fix CAM-021 check encryption key befo","add":7,"del":1},{"hash":"8813f5ed","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-02): fix CAM-020 wirePythonWsFrames respec","add":16,"del":3},{"hash":"deef0de2","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-02): fix CAM-019 batch persistCameras call","add":28,"del":12},{"hash":"365303e6","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-02): fix CAM-017 guard against duplicate P","add":19,"del":3},{"hash":"d4dffdc9","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-02): fix CAM-015 create DB record in takeS","add":26,"del":1},{"hash":"52eab5f8","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-02): fix CAM-009+CAM-013+CAM-014 test stre","add":31,"del":0},{"hash":"0cdb16d9","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-02): fix CAM-006+CAM-007 wire night mode t","add":6,"del":0},{"hash":"07261cbf","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-02): fix CAM-005+CAM-016 snapshot path ali","add":4,"del":4},{"hash":"2d40a0ea","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-01): hide raw TOTP secret from setupMFA re","add":1,"del":1},{"hash":"8571f66f","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-01): add rate limiting to register endpoin","add":11,"del":1},{"hash":"6d9420be","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-01): remove dead email verification and pa","add":0,"del":17},{"hash":"43c7c63e","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-01): handle empty ip address for session c","add":4,"del":2},{"hash":"bc2a2590","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-01): add dummy bcrypt compare to prevent t","add":1,"del":0},{"hash":"139d2e36","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-01): remove as any type bypass in AuthCont","add":11,"del":1},{"hash":"c815536c","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-01): add MFA setup UI in Settings, MFA cha","add":467,"del":10},{"hash":"f8e27adf","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-01): hide register tab from non-admin user","add":11,"del":3},{"hash":"3578f6b5","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-01): reduce auth middleware log verbosity ","add":1,"del":1},{"hash":"d94716be","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-01): enforce password complexity on regist","add":19,"del":15},{"hash":"2326b4b3","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(12-01): update lastLogin on successful login ","add":54,"del":14},{"hash":"3282e27b","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix: don't clear camera streams when only frameRat","add":15,"del":7},{"hash":"7cbbbb71","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix: session INSERT column names must match migrat","add":3,"del":3},{"hash":"12086175","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(11-05): camera update fields + filter body + z","add":58,"del":2},{"hash":"d03628a4","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(11-08): notification triggers + VAPID file per","add":47,"del":7},{"hash":"0931e57b","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(11-04): detection stubs + repo init + settings","add":115,"del":14},{"hash":"69d4f935","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(11-07): auth token invalidation + password his","add":60,"del":1},{"hash":"75cb3d46","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(11-06): settings retention field swap + fresh-","add":15,"del":4},{"hash":"4fa723d8","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(11-03): analytics vehicles + bbox render + mot","add":51,"del":14},{"hash":"7ee14762","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(11-09): batch CSV literal newline fix (FIX-029","add":1,"del":1},{"hash":"f65bcc87","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(11-02): highlights night SQL + sort + keyboard","add":12,"del":10},{"hash":"10a01717","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(11-01): visitor PUT update + deleteFace fixes ","add":55,"del":33},{"hash":"20cd5076","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(10-03): reset lockout counters on successful l","add":1868,"del":273},{"hash":"7ab5e59f","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"docs(10-03): complete auth lockout + MFA fix plan","add":101,"del":0},{"hash":"519b9303","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"docs(10-02): complete camera config persistence pl","add":104,"del":0},{"hash":"98e2d5d6","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(10-02): fix camera create and add persistence","add":51,"del":3},{"hash":"78e81f0a","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"docs(10-01): complete event deletion fix plan","add":87,"del":0},{"hash":"c74e22f8","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(10-02): add persistCameras() to StreamManager","add":52,"del":2},{"hash":"6748ebe2","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(10-03): fix MFA setup persistence and verify p","add":33,"del":4},{"hash":"238a0a45","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"docs(10-04): complete SQL injection fix plan","add":96,"del":0},{"hash":"bd01b113","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(10-01): rewrite event archive handler with rea","add":74,"del":5},{"hash":"6eee4774","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(10-04): parameterize SQL queries in batch proc","add":4,"del":4},{"hash":"e9c67f8a","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(10-03): add account lockout logic to login met","add":27,"del":2},{"hash":"6ceea3c8","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"feat(10-01): add removeEvent method to InMemorySta","add":63,"del":9},{"hash":"65298138","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"docs(10): create phase 10 critical bug fix plans (","add":926,"del":5},{"hash":"c09e48b6","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"docs(phase-10): research 7 P0 critical bugs with r","add":876,"del":0},{"hash":"310ce91c","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix: event image serving, filter empty file_path e","add":96,"del":145},{"hash":"2ec23c88","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix: ByteTracker first-frame drop, WS event protoc","add":6857,"del":4450},{"hash":"085be863","date":"2026-05-31","repo":"casa-visitor-guardian","msg":"fix(opencv): fix live stream latency, add dual-str","add":203,"del":64},{"hash":"97045fe3","date":"2026-06-01","repo":"casa-visitor-guardian","msg":"feat: add NVIDIA bounding boxes overlay with toggl","add":144,"del":104},{"hash":"0162c8ef","date":"2026-06-01","repo":"casa-visitor-guardian","msg":"fix: prevent NVIDIA reasoning model from outputtin","add":15,"del":27},{"hash":"fe2f159b","date":"2026-06-01","repo":"casa-visitor-guardian","msg":"fix: lower person detection confidence threshold f","add":3,"del":3},{"hash":"02c6b710","date":"2026-06-01","repo":"casa-visitor-guardian","msg":"fix: keep all cameras mounted in slideshow but use","add":1828,"del":1059},{"hash":"6bfdb9b0","date":"2026-06-03","repo":"casa-visitor-guardian","msg":"chore: bump version to 1.5.0","add":3,"del":3},{"hash":"3ce05028","date":"2026-06-03","repo":"casa-visitor-guardian","msg":"fix: stabilize live stream reconnection + cleanup ","add":16,"del":20},{"hash":"bfc74a8b","date":"2026-06-03","repo":"casa-visitor-guardian","msg":"fix: eliminate all catch (error: any) + Record<str","add":93,"del":72},{"hash":"10425d02","date":"2026-06-03","repo":"casa-visitor-guardian","msg":"fix: add logging to 11 empty catch blocks across s","add":36,"del":19},{"hash":"4f2b16c8","date":"2026-06-03","repo":"casa-visitor-guardian","msg":"docs: fix AGENTS.md migration count (28→26) and re","add":6,"del":5},{"hash":"c10631f6","date":"2026-06-03","repo":"casa-visitor-guardian","msg":"fix: add auth guards, MFA rate limit, fix .dockeri","add":27,"del":78},{"hash":"af06f906","date":"2026-06-03","repo":"casa-visitor-guardian","msg":"fix: nginx backend port, go2rtc version pin, remov","add":1078,"del":3418},{"hash":"e45011bd","date":"2026-06-03","repo":"casa-visitor-guardian","msg":"fix: WebRTC-then-fallback streaming, grid layout h","add":255,"del":85},{"hash":"debf17a9","date":"2026-06-03","repo":"casa-visitor-guardian","msg":"refactor: DB-first camera loading, stream stabilit","add":201,"del":177},{"hash":"5047bea4","date":"2026-06-10","repo":"wordpress-matrix","msg":"Add(graph-report): Update GRAPH_REPORT.md with lat","add":86774,"del":1197},{"hash":"e31e7234","date":"2026-06-12","repo":"casa-visitor-guardian","msg":"fix: Python pipeline RTSP connectivity + YOLOv8n u","add":53,"del":79},{"hash":"75bf2cee","date":"2026-06-12","repo":"casa-visitor-guardian","msg":"fix: detection route hang + MSE stream settle race","add":1450,"del":6414},{"hash":"7b364ee7","date":"2026-06-13","repo":"casa-visitor-guardian","msg":"chore: bump version to 1.6.0, update README, add r","add":267,"del":181},{"hash":"4ff1d39b","date":"2026-06-13","repo":"casa-visitor-guardian","msg":"feat: one-click install script with zero interacti","add":140,"del":0},{"hash":"c2c802d6","date":"2026-06-15","repo":"casa-visitor-guardian","msg":"feat: enhance NVIDIA detection with scene_context,","add":2142,"del":16031},{"hash":"a922bc51","date":"2026-06-26","repo":"casa-visitor-guardian","msg":"perf: lower camera reader fps to 1 and cap opencv ","add":3,"del":3},{"hash":"11266d32","date":"2026-06-26","repo":"casa-visitor-guardian","msg":"chore: raise OPENCV_CPU_LIMIT default 2.0 -> 7.0","add":1,"del":1},{"hash":"3117465d","date":"2026-06-26","repo":"casa-visitor-guardian","msg":"feat: expand opencv detection pipeline and force Y","add":1648,"del":123},{"hash":"713e33bb","date":"2026-06-28","repo":"casa-visitor-guardian","msg":"perf: reduce CPU 449%→49%, fix scene_analyzer bug,","add":10,"del":9},{"hash":"721b2064","date":"2026-07-01","repo":"wordpress-matrix","msg":"Add(WordPress): Support Apache stack in matrix.","add":479,"del":252},{"hash":"975e813e","date":"2026-07-09","repo":"casa-visitor-guardian","msg":"perf: optimize for low-resource servers (4GB/4-cor","add":1714,"del":321},{"hash":"b5a01f65","date":"2026-07-09","repo":"casa-visitor-guardian","msg":"docs: add low-resource optimization design spec","add":504,"del":0},{"hash":"7f45fd36","date":"2026-07-10","repo":"wordpress-matrix","msg":"add performance optimizations to create_site and o","add":389,"del":9},{"hash":"2dd8550a","date":"2026-07-15","repo":"wordpress-matrix","msg":"feat(theme): enable PHP 8.x support for Apache sta","add":135,"del":22},{"hash":"6d9804c7","date":"2026-07-16","repo":"casa-visitor-guardian","msg":"docs: add detailed improvement plan","add":639,"del":0},{"hash":"adfe2f1a","date":"2026-07-16","repo":"casa-visitor-guardian","msg":"docs: fix codebase map inconsistencies","add":46,"del":10},{"hash":"b84d94a1","date":"2026-07-16","repo":"casa-visitor-guardian","msg":"docs: map existing codebase","add":1716,"del":0},{"hash":"15fc83e1","date":"2026-07-20","repo":"wordpress-matrix","msg":"Add: meta charset and viewport to su-static/index.","add":44432,"del":1060},{"hash":"fff95be0","date":"2026-08-06","repo":"casa-visitor-guardian","msg":"perf: load-time optimization, gzip compression, an","add":775,"del":3812},{"hash":"9f89d62b","date":"2026-08-06","repo":"baruntayenjam.github.io","msg":"feat: Initial setup for tech lead notes website","add":1009,"del":0}]
+[
+{
+"hash": "1c1290c7",
+"date": "2026-09-16",
+"repo": "wordpress-matrix",
+"msg": "fix: preserve WORDPRESS_TABLE_PREFIX during site rename",
+"add": 0,
+"del": 0
+},
+{
+"hash": "0d40e92a",
+"date": "2026-09-16",
+"repo": "wordpress-matrix",
+"msg": "fix: robust rename DB handling using wp-config source",
+"add": 0,
+"del": 0
+},
+{
+"hash": "f913a016",
+"date": "2026-09-16",
+"repo": "wordpress-matrix",
+"msg": "fix: rename updates nginx upstream and wp-config regex",
+"add": 0,
+"del": 0
+},
+{
+"hash": "30a25855",
+"date": "2026-09-16",
+"repo": "wordpress-matrix",
+"msg": "feat: add site rename support and phpMyAdmin shortcut",
+"add": 0,
+"del": 0
+},
+{
+"hash": "8769baf5",
+"date": "2026-09-11",
+"repo": "baruntayenjam.github.io",
+"msg": "perf: switch to single minified CSS and JS with auto-build workflow",
+"add": 0,
+"del": 0
+},
+{
+"hash": "74c07adb",
+"date": "2026-09-11",
+"repo": "baruntayenjam.github.io",
+"msg": "fix: aria-label on all dialog elements for AI agent accessibility tree",
+"add": 0,
+"del": 0
+},
+{
+"hash": "cb2c0b3a",
+"date": "2026-09-11",
+"repo": "baruntayenjam.github.io",
+"msg": "fix: SEO/AEO \u2014 static h1, main landmark, llms.txt, single h1 per page",
+"add": 0,
+"del": 0
+},
+{
+"hash": "2ceb6dca",
+"date": "2026-09-11",
+"repo": "baruntayenjam.github.io",
+"msg": "fix: ReferenceError N hoisted, slider iterates full star array",
+"add": 0,
+"del": 0
+},
+{
+"hash": "a12af6ca",
+"date": "2026-09-11",
+"repo": "baruntayenjam.github.io",
+"msg": "fix: FOUC \u2014 valid HTML structure, inline critical CSS for instant dark",
+"add": 0,
+"del": 0
+},
+{
+"hash": "dc6971b9",
+"date": "2026-09-11",
+"repo": "baruntayenjam.github.io",
+"msg": "feat: complete portfolio updates across content, SEO, and performance",
+"add": 0,
+"del": 0
+},
+{
+"hash": "c4269a20",
+"date": "2026-09-10",
+"repo": "gitops",
+"msg": "refactor(core): remove unused analysis and cache methods- Removed mono",
+"add": 0,
+"del": 0
+},
+{
+"hash": "eeb187b2",
+"date": "2026-09-10",
+"repo": "gitops",
+"msg": "fix(tests): remove tests for removed methods and fix failing test suit",
+"add": 0,
+"del": 0
+},
+{
+"hash": "7dad987d",
+"date": "2026-09-10",
+"repo": "gitops",
+"msg": "refactor(cli): lazy\u2011load modules to reduce startup time- Remove eager ",
+"add": 0,
+"del": 0
+},
+{
+"hash": "f14d749f",
+"date": "2026-09-10",
+"repo": "gitops",
+"msg": "refactor(core): enhance diff handling, syntax validation, and breaking",
+"add": 0,
+"del": 0
+},
+{
+"hash": "a698f8c4",
+"date": "2026-09-10",
+"repo": "gitops",
+"msg": "- Add new aic architecture diagram HTML file with theme and preset sup",
+"add": 0,
+"del": 0
+},
+{
+"hash": "ce83a822",
+"date": "2026-09-08",
+"repo": "baruntayenjam.github.io",
+"msg": "perf: replace transition:all with targeted properties and add easing t",
+"add": 0,
+"del": 0
+},
+{
+"hash": "f5914c7d",
+"date": "2026-09-06",
+"repo": "baruntayenjam.github.io",
+"msg": "Add full guide text page and 50-question domain quiz engine",
+"add": 0,
+"del": 0
+},
+{
+"hash": "a069379e",
+"date": "2026-09-06",
+"repo": "baruntayenjam.github.io",
+"msg": "Fix layout thrash: progress bar width\u2192scaleX transform",
+"add": 0,
+"del": 0
+},
+{
+"hash": "72016ecc",
+"date": "2026-09-06",
+"repo": "baruntayenjam.github.io",
+"msg": "Replace links page with full HTML slideshow of study deck",
+"add": 0,
+"del": 0
+},
+{
+"hash": "6943ebea",
+"date": "2026-09-06",
+"repo": "baruntayenjam.github.io",
+"msg": "Bump heading size for clearer type scale",
+"add": 0,
+"del": 0
+},
+{
+"hash": "415b5196",
+"date": "2026-09-06",
+"repo": "baruntayenjam.github.io",
+"msg": "Add CCAR-F study materials page",
+"add": 0,
+"del": 0
+},
+{
+"hash": "18fe55d8",
+"date": "2026-09-03",
+"repo": "gitops",
+"msg": "test: e2e rebase sync",
+"add": 0,
+"del": 0
+},
+{
+"hash": "70e1ac64",
+"date": "2026-09-03",
+"repo": "gitops",
+"msg": "refactor(core): prefer manual message over AI on dry run add test for ",
+"add": 0,
+"del": 0
+},
+{
+"hash": "f2d97b7f",
+"date": "2026-09-03",
+"repo": "gitops",
+"msg": "refactor(core): merge repeated file headers, reduce console noise, add",
+"add": 0,
+"del": 0
+},
+{
+"hash": "488aa709",
+"date": "2026-09-03",
+"repo": "gitops",
+"msg": "refactor(core): prevent AI generation on conflicted diffs and synthesi",
+"add": 0,
+"del": 0
+},
+{
+"hash": "04d02a35",
+"date": "2026-09-03",
+"repo": "gitops",
+"msg": "refactor(ui): surface quality gate results and support generating mult",
+"add": 0,
+"del": 0
+},
+{
+"hash": "37ff27df",
+"date": "2026-09-03",
+"repo": "gitops",
+"msg": "refactor(config): add config get option, usage stats options, and impr",
+"add": 0,
+"del": 0
+},
+{
+"hash": "f807fcec",
+"date": "2026-09-03",
+"repo": "gitops",
+"msg": "feat(ui): add generate command for AI commit messages and improve push",
+"add": 0,
+"del": 0
+},
+{
+"hash": "f3172ee0",
+"date": "2026-08-19",
+"repo": "wordpress-matrix",
+"msg": "Stop tracking .env",
+"add": 0,
+"del": 0
+},
+{
+"hash": "a937a7b8",
+"date": "2026-08-18",
+"repo": "casa-visitor-guardian",
+"msg": "chore: remove RTSP credentials from tracked config, source from env",
+"add": 0,
+"del": 0
+},
+{
+"hash": "e72b4d68",
+"date": "2026-08-18",
+"repo": "casa-visitor-guardian",
+"msg": "feat: live detection overlays, phantom-person fixes, and seamless stre",
+"add": 0,
+"del": 0
+},
+{
+"hash": "5e766edd",
+"date": "2026-08-18",
+"repo": "casa-visitor-guardian",
+"msg": "feat: people page, face clustering routes, and UI updates",
+"add": 0,
+"del": 0
+},
+{
+"hash": "33eb44d4",
+"date": "2026-08-17",
+"repo": "gitops",
+"msg": "refactor(core): remove dead methods and exports, fix corrupted conflic",
+"add": 0,
+"del": 0
+},
+{
+"hash": "264d94f1",
+"date": "2026-08-17",
+"repo": "gitops",
+"msg": "refactor(core): add dependency injection to AICommitGenerator, make is",
+"add": 0,
+"del": 0
+},
+{
+"hash": "20230085",
+"date": "2026-08-17",
+"repo": "gitops",
+"msg": "refactor(formatters): remove unused WhyChangedFormatter and its tests",
+"add": 0,
+"del": 0
+},
+{
+"hash": "ecf74ef5",
+"date": "2026-08-17",
+"repo": "gitops",
+"msg": "refactor(conflict-resolver): change resolveConflictWithAI to accept a ",
+"add": 0,
+"del": 0
+},
+{
+"hash": "75cca7f5",
+"date": "2026-08-17",
+"repo": "gitops",
+"msg": "feat(core): add generation pipeline for AI commit message generation a",
+"add": 0,
+"del": 0
+},
+{
+"hash": "70072404",
+"date": "2026-08-17",
+"repo": "gitops",
+"msg": "feat(ai-commit-generator): add diff type analysis and provider prompt ",
+"add": 0,
+"del": 0
+},
+{
+"hash": "ce286480",
+"date": "2026-08-17",
+"repo": "gitops",
+"msg": "refactor(cli): extract CLI presentation and error handling into dedica",
+"add": 0,
+"del": 0
+},
+{
+"hash": "b39d16b9",
+"date": "2026-08-17",
+"repo": "gitops",
+"msg": "Refactor(AICommitGenerator): Move commit message ranking logic to new ",
+"add": 0,
+"del": 0
+},
+{
+"hash": "4eac7dfe",
+"date": "2026-08-16",
+"repo": "baruntayenjam.github.io",
+"msg": "chore: remove junk file c.txt",
+"add": 0,
+"del": 0
+},
+{
+"hash": "fa092e92",
+"date": "2026-08-16",
+"repo": "baruntayenjam.github.io",
+"msg": "feat: polish portfolio \u2014 32/32 heuristics, accessible, hardened, dynam",
+"add": 0,
+"del": 0
+},
+{
+"hash": "fefcb854",
+"date": "2026-08-15",
+"repo": "casa-visitor-guardian",
+"msg": "fix: make go2rtc WebRTC candidates configurable and add HLS fallback",
+"add": 0,
+"del": 0
+},
+{
+"hash": "ba8e9fd0",
+"date": "2026-08-15",
+"repo": "casa-visitor-guardian",
+"msg": "docs: map existing codebase",
+"add": 0,
+"del": 0
+},
+{
+"hash": "588c7efa",
+"date": "2026-08-15",
+"repo": "casa-visitor-guardian",
+"msg": "docs: add architecture summary and environment variable reference",
+"add": 0,
+"del": 0
+},
+{
+"hash": "bd231e85",
+"date": "2026-08-15",
+"repo": "casa-visitor-guardian",
+"msg": "feat: commit remaining frontend streaming components, tests, and datab",
+"add": 0,
+"del": 0
+},
+{
+"hash": "02a315c5",
+"date": "2026-08-15",
+"repo": "casa-visitor-guardian",
+"msg": "feat: restore HumanVerifier integration in detection pipeline",
+"add": 0,
+"del": 0
+},
+{
+"hash": "8aa8e037",
+"date": "2026-08-15",
+"repo": "casa-visitor-guardian",
+"msg": "fix: restore v1.6.0 same-origin go2rtc streaming, repair Express 5 sta",
+"add": 0,
+"del": 0
+},
+{
+"hash": "512a9d4a",
+"date": "2026-08-13",
+"repo": "casa-visitor-guardian",
+"msg": "feat: add NVIDIA circuit breaker, EventBus, CI workflow, and ioredis c",
+"add": 0,
+"del": 0
+},
+{
+"hash": "de87e72b",
+"date": "2026-08-13",
+"repo": "casa-visitor-guardian",
+"msg": "style(lint): implement Prettier and ESLint infrastructure",
+"add": 0,
+"del": 0
+},
+{
+"hash": "386ced8d",
+"date": "2026-08-13",
+"repo": "casa-visitor-guardian",
+"msg": "feat(reliability): implement Tier 0 reliability fixes",
+"add": 0,
+"del": 0
+},
+{
+"hash": "e27b5f24",
+"date": "2026-08-13",
+"repo": "casa-visitor-guardian",
+"msg": "refactor: complete backend architecture overhaul and test suite stabil",
+"add": 0,
+"del": 0
+},
+{
+"hash": "8fcbb818",
+"date": "2026-08-13",
+"repo": "casa-visitor-guardian",
+"msg": "fix: remove undefined sceneContext property from EventsPage analysis",
+"add": 0,
+"del": 0
+},
+{
+"hash": "fcc9356f",
+"date": "2026-08-13",
+"repo": "casa-visitor-guardian",
+"msg": "perf: implement frontend pagination; refine server logging, validation",
+"add": 0,
+"del": 0
+},
+{
+"hash": "cc38f9b5",
+"date": "2026-08-13",
+"repo": "casa-visitor-guardian",
+"msg": "perf: implement frontend pagination in EventsPage, refine server loggi",
+"add": 0,
+"del": 0
+},
+{
+"hash": "24a0cda1",
+"date": "2026-08-13",
+"repo": "casa-visitor-guardian",
+"msg": "docs: add conventions and testing to codebase map",
+"add": 0,
+"del": 0
+},
+{
+"hash": "6b6968f6",
+"date": "2026-08-13",
+"repo": "casa-visitor-guardian",
+"msg": "docs: map existing codebase",
+"add": 0,
+"del": 0
+},
+{
+"hash": "f3e6c393",
+"date": "2026-08-11",
+"repo": "baruntayenjam.github.io",
+"msg": "deploy: copy chrononaut site into repo",
+"add": 0,
+"del": 0
+},
+{
+"hash": "9f89d62b",
+"date": "2026-08-06",
+"repo": "baruntayenjam.github.io",
+"msg": "feat: Initial setup for tech lead notes website",
+"add": 0,
+"del": 0
+},
+{
+"hash": "dfd3a308",
+"date": "2026-08-06",
+"repo": "casa-visitor-guardian",
+"msg": "perf: load-time optimization, gzip compression, and person-confidence ",
+"add": 0,
+"del": 0
+},
+{
+"hash": "f10e1372",
+"date": "2026-08-06",
+"repo": "effects-of-e20",
+"msg": "UI/UX: Improve readability, disputes list two-column, tightened source",
+"add": 0,
+"del": 0
+},
+{
+"hash": "329c4ae2",
+"date": "2026-08-06",
+"repo": "effects-of-e20",
+"msg": "Update E20 research: SIAM controversy, Parliament response, E25 transi",
+"add": 0,
+"del": 0
+},
+{
+"hash": "f4ff04f1",
+"date": "2026-08-05",
+"repo": "wordpress-matrix",
+"msg": "fin-v2: Update migration section and transfer learning card",
+"add": 0,
+"del": 0
+},
+{
+"hash": "eb4c7ea6",
+"date": "2026-08-05",
+"repo": "wordpress-matrix",
+"msg": "fin-v2: Update migration section heading and TOC label",
+"add": 0,
+"del": 0
+},
+{
+"hash": "74481fea",
+"date": "2026-08-05",
+"repo": "effects-of-e20",
+"msg": "fix: accessibility \u2014 contrast, landmarks, headings, focus styles, skip",
+"add": 0,
+"del": 0
+},
+{
+"hash": "c08ff9b7",
+"date": "2026-08-05",
+"repo": "effects-of-e20",
+"msg": "seo: AEO audit fixes \u2014 real URLs, schema entities, OG/Twitter, questio",
+"add": 0,
+"del": 0
+},
+{
+"hash": "857643f1",
+"date": "2026-08-05",
+"repo": "effects-of-e20",
+"msg": "fix: replace placeholder canonical URL",
+"add": 0,
+"del": 0
+},
+{
+"hash": "c7f6d0fc",
+"date": "2026-08-05",
+"repo": "effects-of-e20",
+"msg": "docs: rename e20-research-report.md to README.md",
+"add": 0,
+"del": 0
+},
+{
+"hash": "e3fc4f0f",
+"date": "2026-08-05",
+"repo": "effects-of-e20",
+"msg": "feat: initialize static E20 dossier site",
+"add": 0,
+"del": 0
+},
+{
+"hash": "d4de12cc",
+"date": "2026-08-02",
+"repo": "manipur-economy",
+"msg": "content: refresh data to Aug 2 2026 - UNC blockade, inflation, Act Eas",
+"add": 0,
+"del": 0
+},
+{
+"hash": "15fc83e1",
+"date": "2026-07-20",
+"repo": "wordpress-matrix",
+"msg": "Add: meta charset and viewport to su-static/index.html",
+"add": 0,
+"del": 0
+},
+{
+"hash": "2dd8550a",
+"date": "2026-07-15",
+"repo": "wordpress-matrix",
+"msg": "feat(theme): enable PHP 8.x support for Apache stack",
+"add": 0,
+"del": 0
+},
+{
+"hash": "e4696af3",
+"date": "2026-07-15",
+"repo": "casa-visitor-guardian",
+"msg": "docs: add detailed improvement plan",
+"add": 0,
+"del": 0
+},
+{
+"hash": "c73fbdca",
+"date": "2026-07-15",
+"repo": "casa-visitor-guardian",
+"msg": "docs: fix codebase map inconsistencies",
+"add": 0,
+"del": 0
+},
+{
+"hash": "4bb40901",
+"date": "2026-07-15",
+"repo": "casa-visitor-guardian",
+"msg": "docs: map existing codebase",
+"add": 0,
+"del": 0
+},
+{
+"hash": "d4138e5e",
+"date": "2026-07-15",
+"repo": "manipur-economy",
+"msg": "feat: flip to light warm-luxury theme with WCAG AA contrast",
+"add": 0,
+"del": 0
+},
+{
+"hash": "b03f913c",
+"date": "2026-07-15",
+"repo": "manipur-economy",
+"msg": "refine: double-bezel on phase/timeline/flow cards + magnetic hero CTA ",
+"add": 0,
+"del": 0
+},
+{
+"hash": "7dbf306b",
+"date": "2026-07-15",
+"repo": "manipur-economy",
+"msg": "fix: footer content left-aligned to page grid (full-width band, no cen",
+"add": 0,
+"del": 0
+},
+{
+"hash": "b9d6e57a",
+"date": "2026-07-15",
+"repo": "manipur-economy",
+"msg": "fix: remove stray phases rail line + make footer full-width (100% layo",
+"add": 0,
+"del": 0
+},
+{
+"hash": "42ee869b",
+"date": "2026-07-15",
+"repo": "manipur-economy",
+"msg": "fix: footer layout and phases header rail alignment",
+"add": 0,
+"del": 0
+},
+{
+"hash": "634725dd",
+"date": "2026-07-15",
+"repo": "manipur-economy",
+"msg": "fix: hero count-up flash + phases rail misalignment (Playwright-verifi",
+"add": 0,
+"del": 0
+},
+{
+"hash": "bf76abd2",
+"date": "2026-07-15",
+"repo": "manipur-economy",
+"msg": "content: refresh to Jul 2026 \u2014 three-community crisis, conflict-phases",
+"add": 0,
+"del": 0
+},
+{
+"hash": "7f45fd36",
+"date": "2026-07-09",
+"repo": "wordpress-matrix",
+"msg": "add performance optimizations to create_site and optimize command",
+"add": 0,
+"del": 0
+},
+{
+"hash": "cbeac6af",
+"date": "2026-07-09",
+"repo": "casa-visitor-guardian",
+"msg": "perf: optimize for low-resource servers (4GB/4-core)",
+"add": 0,
+"del": 0
+},
+{
+"hash": "15a991f7",
+"date": "2026-07-09",
+"repo": "casa-visitor-guardian",
+"msg": "docs: add low-resource optimization design spec",
+"add": 0,
+"del": 0
+},
+{
+"hash": "721b2064",
+"date": "2026-07-01",
+"repo": "wordpress-matrix",
+"msg": "Add(WordPress): Support Apache stack in matrix.",
+"add": 0,
+"del": 0
+},
+{
+"hash": "22f9a2dc",
+"date": "2026-06-27",
+"repo": "casa-visitor-guardian",
+"msg": "perf: reduce CPU 449%\u219249%, fix scene_analyzer bug, disable HSTS",
+"add": 0,
+"del": 0
+},
+{
+"hash": "770ffd38",
+"date": "2026-06-26",
+"repo": "casa-visitor-guardian",
+"msg": "perf: lower camera reader fps to 1 and cap opencv to 6.0 cores",
+"add": 0,
+"del": 0
+},
+{
+"hash": "062dae4c",
+"date": "2026-06-26",
+"repo": "casa-visitor-guardian",
+"msg": "chore: raise OPENCV_CPU_LIMIT default 2.0 -> 7.0",
+"add": 0,
+"del": 0
+},
+{
+"hash": "d7e68974",
+"date": "2026-06-26",
+"repo": "casa-visitor-guardian",
+"msg": "feat: expand opencv detection pipeline and force YOLOv8m",
+"add": 0,
+"del": 0
+},
+{
+"hash": "7f6ddf1b",
+"date": "2026-06-19",
+"repo": "manipur-economy",
+"msg": "perf: tighten map lazy-load rootMargin to 0 (was firing at load)",
+"add": 0,
+"del": 0
+},
+{
+"hash": "0bc7f2e4",
+"date": "2026-06-19",
+"repo": "manipur-economy",
+"msg": "perf: lazy-load Leaflet library itself (inject script on scroll) \u2014 rem",
+"add": 0,
+"del": 0
+},
+{
+"hash": "9352534c",
+"date": "2026-06-19",
+"repo": "manipur-economy",
+"msg": "perf: lazy-init Leaflet map via IntersectionObserver (defers 200KB til",
+"add": 0,
+"del": 0
+},
+{
+"hash": "500b4219",
+"date": "2026-06-19",
+"repo": "manipur-economy",
+"msg": "perf: defer Leaflet JS, async-load Leaflet CSS + Google Fonts, trim fo",
+"add": 0,
+"del": 0
+},
+{
+"hash": "7f1e18e2",
+"date": "2026-06-19",
+"repo": "manipur-economy",
+"msg": "refactor: move icons/images into assets/ folder; update all references",
+"add": 0,
+"del": 0
+},
+{
+"hash": "725df0f2",
+"date": "2026-06-19",
+"repo": "manipur-economy",
+"msg": "seo: JSON-LD structured data (@graph: Article/Dataset/Event/WebPage), ",
+"add": 0,
+"del": 0
+},
+{
+"hash": "007458d7",
+"date": "2026-06-19",
+"repo": "manipur-economy",
+"msg": "polish: favicon set, web manifest, OG/Twitter meta, SEO, preconnects, ",
+"add": 0,
+"del": 0
+},
+{
+"hash": "0cbddfbb",
+"date": "2026-06-19",
+"repo": "manipur-economy",
+"msg": "map: remove cluttering layer-control toggle (layers stay visible by de",
+"add": 0,
+"del": 0
+},
+{
+"hash": "0fd0992e",
+"date": "2026-06-19",
+"repo": "manipur-economy",
+"msg": "docs: add shields.io badge row (live status, stack, license, WCAG, ver",
+"add": 0,
+"del": 0
+},
+{
+"hash": "4a0aaa3f",
+"date": "2026-06-19",
+"repo": "manipur-economy",
+"msg": "map: permanent highway labels, route halos, marker hover labels (repla",
+"add": 0,
+"del": 0
+}
+]

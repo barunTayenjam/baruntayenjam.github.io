@@ -8,12 +8,12 @@ CONTENT = json.load(open("content.json"))
 stats = CONTENT["impactStats"]
 person = CONTENT["person"]
 
-img = Image.new("RGB", (W, H), (3, 7, 13))
+img = Image.new("RGB", (W, H), (5, 10, 12))
 d = ImageDraw.Draw(img)
 for y in range(H):
     t = y / H
-    d.line([(0, y), (W, y)], fill=(int(3 + 8 * t), int(7 + 9 * t), int(13 + 11 * t)))
-d.rectangle([60, 90, 1140, 540], outline=(240, 166, 60), width=4)
+    d.line([(0, y), (W, y)], fill=(int(5 + 6 * t), int(10 + 7 * t), int(12 + 9 * t)))
+d.rectangle([60, 90, 1140, 540], outline=(45, 212, 191), width=4)
 
 def font(sz, bold=True):
     for p in [
@@ -27,12 +27,12 @@ def font(sz, bold=True):
             continue
     return ImageFont.load_default()
 
-d.text((100, 150), person["name"], font=font(84), fill=(240, 166, 60))
-d.text((100, 250), person["title"] + "  ·  " + person["subtitle"], font=font(32, False), fill=(216, 232, 226))
+d.text((100, 150), person["name"], font=font(84), fill=(45, 212, 191))
+d.text((100, 250), person["title"] + "  ·  " + person["subtitle"], font=font(32, False), fill=(233, 244, 242))
 for i, s in enumerate(stats[:4]):
     x = 100 + i * 260
-    d.text((x, 350), s["value"] + " " + s["unit"], font=font(44), fill=(240, 166, 60))
-    d.text((x, 410), s["label"], font=font(26, False), fill=(138, 168, 160))
-d.text((100, 485), "baruntayenjam.github.io", font=font(30, False), fill=(138, 168, 160))
+    d.text((x, 350), s["value"] + " " + s["unit"], font=font(44), fill=(45, 212, 191))
+    d.text((x, 410), s["label"], font=font(26, False), fill=(143, 168, 164))
+d.text((100, 485), "baruntayenjam.github.io", font=font(30, False), fill=(143, 168, 164))
 img.save("og-image.png")
 print("wrote og-image.png")

@@ -1,441 +1,311 @@
-    // ── Shared state ──
-    let THREE, OrbitControls;
-    let geometry = null, visibleAttr = null, points = null, REPOS;
-    const GALAXY_TOTAL = 752; // display target from content.stats.commitsAlltime
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+/* ============================================================
+   baruntayenjam.github.io v3 — Swiss Terminal Editorial
+   Three signature moments only:
+     1. velocity-reactive skew on display type + marquee
+     2. 100-commit wall with repo filter
+     3. scroll progress + nav solid + counter animation
+   Zero dependencies. Transform/opacity only. rAF-throttled.
+   ============================================================ */
 
-    // ── Fetch all content from JSON ──
-    let CONTENT;
-    let COMMITS;
+(async function () {
+  'use strict';
+  document.documentElement.classList.add('js');
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* ── 1. nav solid + scroll progress ────────────────────── */
+  const nav = $('#nav'), pbar = $('#pbar');
+  const onScroll = () => {
+    const y = scrollY;
+    nav.classList.toggle('solid', y > 30);
+    const h = document.documentElement.scrollHeight - innerHeight;
+    pbar.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── 2. hero rise-in (JS-driven so it coexists with velocity skew) ── */
+  if (!reduce) {
+    const heroSpans = $$('.hero h1 .row > span');
+    heroSpans.forEach((el, i) => {
+      el.style.transition = 'transform 1.1s cubic-bezier(.22,1,.36,1) ' + (i * 0.12) + 's, opacity .9s ease ' + (i * 0.12) + 's';
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in')));
+    });
+  }
+
+  /* ── 3. velocity-reactive skew on display + marquee ────── */
+  if (!reduce) {
+    const skewTargets = $$('.hero h1 .row, .manifesto-q, .contact-head');
+    const mq = $('.mq-track');
+    let velocity = 0;
+    let mqPos = 0;
+    let prevY = scrollY;
+    let lastTime = performance.now();
+    let raf = null;
+    let mqVisible = false;
+    let mqPaused = false;
+
+    if (mq) {
+      const mqIO = new IntersectionObserver(es => {
+        mqVisible = es[0].isIntersecting;
+        if (mqVisible && !raf) { prevY = scrollY; lastTime = performance.now(); raf = requestAnimationFrame(tick); }
+      }, { threshold: 0 });
+      const mqSec = mq.closest('.marquee');
+      mqIO.observe(mqSec);
+      mqSec.addEventListener('mouseenter', () => { mqPaused = true; });
+      mqSec.addEventListener('mouseleave', () => { mqPaused = false; if (mqVisible && !raf) { prevY = scrollY; lastTime = performance.now(); raf = requestAnimationFrame(tick); } });
+    }
+
+    const tick = () => {
+      const now = performance.now();
+      const dt = Math.max(now - lastTime, 1);
+      const dy = scrollY - prevY;
+      const inst = (dy / dt) * 16;
+      velocity += (inst - velocity) * 0.18;
+      if (Math.abs(velocity) < 0.02) velocity = 0;
+
+      const skew = Math.max(-1.6, Math.min(1.6, velocity * 0.04));
+      for (const el of skewTargets) el.style.transform = 'skewX(' + skew + 'deg)';
+
+      if (mq && mqVisible && !mqPaused) {
+        const baseSpeed = 70;
+        const accel = Math.min(60, Math.abs(velocity) * 5);
+        mqPos += (baseSpeed + accel) * dt * 0.001 * (velocity >= 0 ? -1 : 1);
+        const halfWidth = mq.scrollWidth / 2;
+        if (halfWidth > 0) {
+          if (mqPos < -halfWidth) mqPos += halfWidth;
+          else if (mqPos > 0) mqPos -= halfWidth;
+        }
+        mq.style.transform = 'translateX(' + mqPos + 'px)';
+      }
+
+      lastTime = now;
+      prevY = scrollY;
+      const active = mqVisible && !mqPaused || Math.abs(velocity) > 0.05 || Math.abs(dy) > 0.5;
+      if (active) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        for (const el of skewTargets) el.style.transform = '';
+        raf = null;
+      }
+    };
+    addEventListener('scroll', () => {
+      if (!raf) { prevY = scrollY; lastTime = performance.now(); raf = requestAnimationFrame(tick); }
+    }, { passive: true });
+    raf = requestAnimationFrame(tick);
+  }
+
+  /* ── 4. manifesto word-reveal on enter ────────────────── */
+  if (!reduce && $('.manifesto-q')) {
+    const q = $('.manifesto-q');
+    const text = q.textContent.trim();
+    q.innerHTML = '';
+    const tokens = text.split(/\s+/).filter(Boolean);
+    tokens.forEach((t, i) => {
+      if (i > 0) q.appendChild(document.createTextNode(' '));
+      const span = document.createElement('span');
+      span.className = 'w';
+      span.textContent = t;
+      q.appendChild(span);
+    });
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        $$('.w', e.target).forEach((s, i) => {
+          setTimeout(() => s.classList.add('in'), i * 30);
+        });
+      });
+    }, { threshold: 0.2 });
+    io.observe(q);
+  }
+
+  /* ── 5. generic reveals ───────────────────────────────── */
+  const rio = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      rio.unobserve(e.target);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -4% 0px' });
+  $$('.reveal').forEach(el => rio.observe(el));
+
+  /* ── 6. counters ──────────────────────────────────────── */
+  const cio = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      const el = e.target;
+      const end = parseFloat(el.dataset.count);
+      const dec = parseInt(el.dataset.decimals || '0', 10);
+      const suf = el.dataset.suffix || '';
+      if (reduce) return;
+      const t0 = performance.now();
+      const step = (ts) => {
+        const p = Math.min((ts - t0) / 1400, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = (end * ease).toFixed(dec) + suf;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.5 });
+  $$('.count').forEach(el => cio.observe(el));
+
+  /* ── 7. commit wall ────────────────────────────────────── */
+  const wall = $('#commitsWall');
+  const countEl = $('#commitCount');
+  if (wall) {
+    let commits = [];
     try {
-      [CONTENT, COMMITS] = await Promise.all([
-        fetch('content.json').then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
-        fetch('commits.json').then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      ]);
-      // keep only latest 100 commits for performance
-      const MAX_COMMITS = 100;
-      COMMITS = COMMITS.slice(-MAX_COMMITS);
+      const r = await fetch('commits.json');
+      commits = await r.json();
     } catch (err) {
-      document.getElementById('loading').innerHTML = `<div style="max-width:400px;text-align:center;"><h2 style="color:var(--danger);margin-bottom:1rem;">System Offline</h2><p style="color:var(--fg-muted);margin-bottom:1.5rem;">Failed to load timeline data. Please verify your connection or visit the GitHub repositories directly.</p><a href="https://github.com/baruntayenjam" style="color:var(--accent-on);background:var(--accent);padding:8px 16px;text-decoration:none;font-weight:bold;border-radius:4px;">GitHub Profile →</a></div>`;
-      document.getElementById('intro').classList.add('fade');
-      throw err;
-    }
-    if (!Array.isArray(COMMITS) || !COMMITS.length) {
-      document.getElementById('loading').textContent = 'no commits to show — timeline is empty';
-      document.getElementById('intro').classList.add('fade');
-      throw new Error('empty commit data');
-    }
-    if (!CONTENT || !CONTENT.person || !CONTENT.repos) {
-      document.getElementById('loading').textContent = 'profile data incomplete — check content.json';
-      document.getElementById('intro').classList.add('fade');
-      throw new Error('invalid content data');
+      wall.innerHTML = '<li class="g-fallback">Commit data offline \u2014 <a href="https://github.com/baruntayenjam">GitHub profile \u2192</a></li>';
     }
 
-    // ── Populate SEO meta from JSON ──
-    document.title = `${CONTENT.person.name} // Chrononaut's Codex`;
-    document.getElementById('meta-desc').setAttribute('content', CONTENT.seo.description);
-    document.getElementById('meta-keywords').setAttribute('content', CONTENT.seo.keywords);
-    document.getElementById('og-title').setAttribute('content', CONTENT.seo.ogTitle);
-    document.getElementById('og-desc').setAttribute('content', CONTENT.seo.ogDescription);
-    if (CONTENT.seo.ogImage) {
-      document.getElementById('og-image').setAttribute('content', CONTENT.seo.ogImage);
-      document.getElementById('tw-image').setAttribute('content', CONTENT.seo.ogImage);
-    }
-    document.getElementById('tw-title').setAttribute('content', CONTENT.seo.ogTitle);
-    document.getElementById('tw-desc').setAttribute('content', CONTENT.seo.ogDescription);
-
-    // ── Intro animation ──
-    const introText = document.querySelector('.intro-text');
-    const intro = document.getElementById('intro');
-    const fullText = CONTENT.person.introLine || 'SHIPPING FASTER, REDUCING TOIL.';
-
-    // Auto-typing effect
-    let i = 0;
-    const type = () => {
-        if (i < fullText.length) {
-            introText.textContent += fullText.charAt(i);
-            i++;
-            setTimeout(type, 50);
-        } else {
-            // Wait 1.5s then auto-dismiss
-            setTimeout(() => intro.classList.add('fade'), 1500);
-        }
-    };
-    type();
-    // ── Populate Hero section ──
-    document.getElementById('hero-name').textContent = CONTENT.person.name;
-    document.getElementById('hero-title').textContent = CONTENT.person.title;
-    if (CONTENT.person.headline) document.getElementById('hero-headline').textContent = CONTENT.person.headline;
-
-    // ── Impact stats ──
-    const statsEl = document.getElementById('impact-stats');
-    (CONTENT.impactStats || []).forEach(s => {
-      const d = document.createElement('div');
-      d.className = 'stat';
-      d.setAttribute('role', 'listitem');
-      d.innerHTML = `<div class="v">${s.value}<small>${s.unit}</small></div><div class="l">${s.label}</div>`;
-      statsEl.appendChild(d);
-    });
-
-    // ── CTA row — resume, blog ──
-    const ctaRow = document.getElementById('cta-row');
-    const resumeLabel = (CONTENT.cta && CONTENT.cta.secondaryLabel) || 'View resume';
-    ctaRow.appendChild(Object.assign(document.createElement('button'), { className: 'ghost', textContent: resumeLabel }));
-    if (CONTENT.links && CONTENT.links.blog) {
-      ctaRow.appendChild(Object.assign(document.createElement('a'), { href: CONTENT.links.blog, target: '_blank', rel: 'noopener', className: 'blog', textContent: 'Tech Lead Notes →' }));
-    }
-    ctaRow.querySelector('button.ghost').addEventListener('click', () => { window.showResume(); if (window.trackContact) window.trackContact('resume_view'); });
-
-    window.trackContact = function(method) {
-      if (typeof gtag === 'function') gtag('event', 'contact_intent', { method });
+    const REPOS = {
+      'casa-visitor-guardian':  { title: 'casa-visitor-guardian',  url: 'https://github.com/baruntayenjam/casa-visitor-guardian' },
+      'wordpress-matrix':       { title: 'wordpress-matrix',       url: 'https://github.com/baruntayenjam/wordpress-matrix' },
+      'baruntayenjam.github.io':{ title: 'baruntayenjam.github.io',url: 'https://baruntayenjam.github.io' },
+      'gitops':                 { title: 'gitops',                 url: 'https://github.com/barungrazitti/gitops' },
+      'JiraGrok':               { title: 'JiraGrok',               url: 'https://github.com/barungrazitti/JiraGrok' },
+      'StarkCSS':               { title: 'StarkCSS',               url: 'https://github.com/barungrazitti/StarkCSS' },
+      'year-in-code':           { title: 'year-in-code',           url: 'https://github.com/barungrazitti/year-in-code' },
+      'manipur-economy':        { title: 'manipur-economy',        url: 'https://github.com/baruntayenjam/manipur-economy' },
+      'SentryVision':           { title: 'SentryVision',           url: 'https://github.com/baruntayenjam/SentryVision' },
+      'effects-of-e20':         { title: 'effects-of-e20',         url: 'https://github.com/baruntayenjam/effects-of-e20' },
+      'taskapi':                { title: 'taskapi',                url: 'https://github.com/baruntayenjam/taskapi' },
+      'home-security':          { title: 'home-security',          url: 'https://github.com/baruntayenjam/home-security' }
     };
 
-    // ── Skills tags ──
-    const skillsBar = document.getElementById('skills-bar');
-    CONTENT.skills.forEach(s => {
-      const el = document.createElement('span');
-      el.textContent = s.label;
-      // Using computed styles for colors to support the variable system
-      el.style.cssText = `font-size:0.6rem;font-family:monospace;padding:2px 8px;border:1px solid var(--border);border-radius:3px;`;
-      el.style.color = s.category === 'ai' ? 'var(--accent)' : 'var(--support)';
-      skillsBar.appendChild(el);
-    });
+    const sorted = commits.slice().sort((a, b) => a.date < b.date ? 1 : -1);
+    const filtersEl = $('#cfOpts');
+    const counts = {};
+    sorted.forEach(c => counts[c.repo] = (counts[c.repo] || 0) + 1);
+    let activeFilter = 'all';
 
-    // ── Contact links ──
-    const cl = document.getElementById('contact-links');
-    if (CONTENT.links.github) cl.innerHTML += `<a href="${CONTENT.links.github}" target="_blank" rel="noopener" style="color:var(--fg-subtle);text-decoration:none;border:1px solid var(--border);padding:4px 10px;border-radius:3px;">github</a>`;
-    if (CONTENT.links.linkedin) cl.innerHTML += `<a href="${CONTENT.links.linkedin}" target="_blank" rel="noopener" style="color:var(--fg-subtle);text-decoration:none;border:1px solid var(--border);padding:4px 10px;border-radius:3px;">linkedin</a>`;
-
-    // ── Contact info ──
-    if (CONTENT.contact) {
-      if (CONTENT.contact.emailUser && CONTENT.contact.emailDomain) {
-        const addr = () => `${CONTENT.contact.emailUser}@${CONTENT.contact.emailDomain}`;
-        document.getElementById('contact-email').innerHTML = `<span style="color:var(--support);">email:</span> <a href="mailto:${addr()}" style="color:var(--fg);text-decoration:none;">${addr()}</a>`;
-      }
-      if (CONTENT.contact.location) document.getElementById('contact-location').innerHTML = `<span style="color:var(--support);">location:</span> ${CONTENT.contact.location}`;
-    }
-
-    // ── Hide loading ──
-    document.getElementById('loading').classList.add('hide');
-
-    REPOS = CONTENT.repos;
-    const repoOrder = Object.keys(REPOS);
-
-    // ── Project panel ──
-    function openProject(repo) {
-      const meta = REPOS[repo] || { title: repo, desc: '', path: '', stack: [] };
-      const repoCommits = COMMITS.filter(c => c.repo === repo);
-      const totalAdd = repoCommits.reduce((s,c) => s + c.add, 0);
-      const totalDel = repoCommits.reduce((s,c) => s + c.del, 0);
-      const recent5 = repoCommits.slice(-5).reverse();
-
-      document.getElementById('proj-title').textContent = meta.title;
-      document.getElementById('proj-path').textContent = meta.path;
-      document.getElementById('proj-desc').textContent = meta.desc;
-      document.getElementById('proj-stack').textContent = (meta.stack || []).join(' · ');
-      document.getElementById('proj-stats').innerHTML = `
-        <div class="stat"><div class="v">${repoCommits.length}</div><div class="k">commits</div></div>
-        <div class="stat"><div class="v">+${(totalAdd/1000).toFixed(1)}k</div><div class="k">added</div></div>
-        <div class="stat"><div class="v">-${(totalDel/1000).toFixed(1)}k</div><div class="k">deleted</div></div>
-      `;
-      document.getElementById('proj-recent').innerHTML = recent5.map(c =>
-        `<li>${c.date.slice(0,10)} — ${c.msg.slice(0,60)}</li>`
-      ).join('');
-      document.getElementById('proj-link').href = meta.url || `https://${meta.path}`;
-      const panel = document.getElementById('project-panel');
-      panel.classList.add('open');
-      trapFocus(panel);
-
-      document.querySelectorAll('#hud .repo-list span').forEach(s => {
-        s.classList.toggle('hl', s.dataset.repo === repo);
-      });
-    }
-
-    // ── Focus trap for open panels ──
-    const trapFocus = (panel) => {
-      const focusables = panel.querySelectorAll('a[href], button, [tabindex="0"], .close');
-      if (!focusables.length) return;
-      focusables[0].focus();
-      const handler = e => {
-        if (!panel.classList.contains('open')) {
-          panel.removeEventListener('keydown', handler);
-          return;
-        }
-        if (e.key !== 'Tab') return;
-        const first = focusables[0];
-        const last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    const renderOpts = () => {
+      const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      filtersEl.innerHTML = '';
+      const mk = (label, key, n) => {
+        const b = document.createElement('button');
+        b.className = 'cf-opt';
+        b.type = 'button';
+        b.setAttribute('aria-pressed', String(activeFilter === key));
+        b.innerHTML = '<span>' + label + '</span><span class="n">' + n + '</span>';
+        b.addEventListener('click', () => {
+          activeFilter = key;
+          renderOpts();
+          render();
+        });
+        filtersEl.appendChild(b);
       };
-      panel.addEventListener('keydown', handler);
+      mk('All repos', 'all', sorted.length);
+      entries.forEach(([k, n]) => mk(REPOS[k]?.title || k, k, n));
     };
 
-    // ── ESC close both panels ──
-    window.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-          document.getElementById('project-panel').classList.remove('open');
-          document.getElementById('resume-panel').classList.remove('open');
-        }
+    const render = () => {
+      const list = activeFilter === 'all' ? sorted : sorted.filter(c => c.repo === activeFilter);
+      wall.innerHTML = '';
+      const frag = document.createDocumentFragment();
+      const esc = s => { const d = document.createElement('div'); d.textContent = String(s ?? ''); return d.innerHTML; };
+      list.forEach(c => {
+        const li = document.createElement('li');
+        const r = REPOS[c.repo] || { title: c.repo, url: '#' };
+        const a = document.createElement('a');
+        a.className = 'cw-row';
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.href = esc(r.url);
+        const dt = document.createElement('span');
+        dt.className = 'cw-date';
+        dt.textContent = (c.date || '').slice(0, 10);
+        const msg = document.createElement('span');
+        msg.className = 'cw-msg';
+        msg.textContent = c.msg || '';
+        const repo = document.createElement('span');
+        repo.className = 'cw-repo';
+        repo.textContent = r.title;
+        a.append(dt, msg, repo);
+        li.appendChild(a);
+        frag.appendChild(li);
+      });
+      wall.appendChild(frag);
+      countEl.textContent = list.length + ' commits';
+
+      if (!reduce) {
+        const rows = $$('.cw-row', wall);
+        rows.forEach((r, i) => {
+          setTimeout(() => r.classList.add('in'), Math.min(i * 8, 400));
+        });
+      } else {
+        $$('.cw-row', wall).forEach(r => r.classList.add('in'));
+      }
+    };
+
+    renderOpts();
+    render();
+  }
+
+  /* ── 8. custom cursor + magnetic buttons (fine pointers) ── */
+  if (!reduce && fine) {
+    const dot = $('#cdot'), ring = $('#cring');
+    let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+    let cursorRunning = true;
+    addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = 'translate(' + (mx - 3) + 'px,' + (my - 3) + 'px)';
+      if (!cursorRunning) { cursorRunning = true; loop(); }
+    }, { passive: true });
+    addEventListener('mouseleave', () => { cursorRunning = false; });
+    addEventListener('mouseenter', () => { if (!cursorRunning) { cursorRunning = true; loop(); } });
+    const loop = () => {
+      if (!cursorRunning) return;
+      rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
+      ring.style.setProperty('--rx', (rx - 18) + 'px');
+      ring.style.setProperty('--ry', (ry - 18) + 'px');
+      ring.style.transform = 'translate(' + (rx - 18) + 'px,' + (ry - 18) + 'px)';
+      requestAnimationFrame(loop);
+    };
+    loop();
+    $$('a,.btn,.soc,.mailto').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('big'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('big'));
     });
-
-    // ── Resume loader ──
-    window.showResume = function() {
-      const c = CONTENT;
-      const vprops = (c.valueProps || []).map(v => `
-        <div style="background:rgba(74,163,127,0.06);border:1px solid rgba(74,163,127,0.2);border-radius:5px;padding:0.8rem;margin-bottom:0.6rem">
-          <div style="color:var(--accent);font-size:0.85rem;font-weight:bold;margin-bottom:0.3rem">${v.title}</div>
-          <div style="color:var(--fg-muted);font-size:0.78rem;line-height:1.6">${v.desc}</div>
-        </div>`).join('');
-      const quotes = (c.testimonials || []).length ? `
-        <h3 style="color:var(--accent);margin-top:2rem">What people say</h3>
-        ${c.testimonials.map(t => `
-          <blockquote style="border-left:2px solid rgba(240,166,60,0.5);margin:0 0 1rem;padding-left:0.9rem;color:var(--fg);font-size:0.82rem;line-height:1.7;font-style:italic">"${t.quote}"<br><span style="color:var(--fg-subtle);font-size:0.7rem;font-style:normal">— ${t.author}</span></blockquote>
-        `).join('')}` : '';
-      const dlBtn = (c.cta && c.cta.resumePdf) ? `<a href="${c.cta.resumePdf}" download style="display:inline-block;margin-top:1.5rem;color:var(--accent-on);background:var(--accent);font-family:monospace;font-size:0.78rem;text-decoration:none;padding:0.6rem 1.2rem;border-radius:4px;font-weight:bold">⬇ Download full résumé (PDF)</a>` : '';
-      const html = `
-        <h3 style="color:var(--accent)">What I deliver</h3>
-        ${vprops}
-        <h3 style="color:var(--accent);margin-top:2rem">Experience</h3>
-        ${c.experience.map(e => `
-          <div style="margin-bottom:1.5rem">
-            <div style="font-weight:bold">${e.role} @ ${e.company}</div>
-            <div style="font-size:0.7rem;color:var(--fg-subtle);margin-bottom:0.4rem">${e.period}</div>
-            <ul style="font-size:0.8rem;padding-left:1.2rem;color:var(--fg-muted);line-height:1.7">${e.achievements.map(a => `<li>${a}</li>`).join('')}</ul>
-          </div>
-        `).join('')}
-        ${quotes}
-        <h3 style="color:var(--accent);margin-top:2rem">Education</h3>
-        ${c.education.map(e => `
-          <div style="margin-bottom:1rem">
-            <div style="font-size:0.85rem">${e.degree}</div>
-            <div style="font-size:0.7rem;color:var(--fg-subtle)">${e.institution} · ${e.year}</div>
-          </div>
-        `).join('')}
-        ${dlBtn}
-      `;
-      document.getElementById('resume-content').innerHTML = html;
-      document.getElementById('resume-panel').classList.add('open');
-    }
-
-    // ── HUD repo list + mobile legend (data-only, no 3D needed) ──
-    const hudList = document.getElementById('repo-list');
-    const mobileLegend = document.getElementById('mobile-legend');
-    const repoCounts = {};
-    COMMITS.forEach(c => repoCounts[c.repo] = (repoCounts[c.repo]||0) + 1);
-    Object.entries(repoCounts).sort((a,b) => b[1]-a[1]).forEach(([repo, count]) => {
-      // Desktop HUD
-      const el = document.createElement('span');
-      el.textContent = `${REPOS[repo]?.title || repo} · ${count}`;
-      el.dataset.repo = repo;
-      el.setAttribute('role', 'button');
-      el.setAttribute('tabindex', '0');
-      el.addEventListener('click', () => openProject(repo));
-      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(repo); } });
-      hudList.appendChild(el);
-      // Mobile Legend
-      const mob = document.createElement('div');
-      mob.textContent = `${REPOS[repo]?.title || repo}`;
-      mob.style.padding = '2px 0';
-      mob.addEventListener('click', () => openProject(repo));
-      mobileLegend.appendChild(mob);
+    $$('.magnetic').forEach(b => {
+      b.addEventListener('mousemove', e => {
+        const r = b.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width / 2) * 0.18;
+        const dy = (e.clientY - r.top - r.height / 2) * 0.22;
+        b.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+      });
+      b.addEventListener('mouseleave', () => b.style.transform = '');
     });
-    // Show legend on touch devices
-    if ('ontouchstart' in window) mobileLegend.style.display = 'block';
+  }
 
-      document.getElementById('visible-count').textContent = GALAXY_TOTAL;
+  /* ── 9. theme toggle ──────────────────────────────────── */
+  const tbtn = $('#themeBtn');
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    if (tbtn) tbtn.textContent = t === 'light' ? '\u263e' : '\u2600';
+    try { localStorage.setItem('bt-theme', t); } catch (e) {}
+  }
+  if (tbtn) {
+    tbtn.textContent = document.documentElement.getAttribute('data-theme') === 'light' ? '\u263e' : '\u2600';
+    tbtn.addEventListener('click', () => applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
+  }
 
-    // ── Time slider (no-ops when 3D skipped) ──
-    // ── Time slider ──
-    const slider = document.getElementById('time-slider');
-    let dateMin = null, dateMax = null;
-    let stars = [];
-    slider.addEventListener('input', e => {
-      if (!geometry || !visibleAttr) return;
-      const timeFilter = parseFloat(e.target.value) / 100;
-      const cutoff = dateMin + (dateMax - dateMin) * timeFilter;
-      let vis = 0;
-      for (let j = 0; j < stars.length; j++) {
-        const starTime = dateMin + stars[j].t * (dateMax - dateMin);
-        const isVisible = starTime <= cutoff ? 1 : 0;
-        visibleAttr[j] = isVisible;
-        vis += isVisible;
-      }
-      geometry.attributes.visible.needsUpdate = true;
-      document.getElementById('visible-count').textContent = vis;
-      document.getElementById('time-val').textContent = timeFilter < 0.99 ? new Date(cutoff).toISOString().slice(0,7) : 'all time';
-    });
-
-    // ── Three.js galaxy — dynamically imported only when motion is allowed ──
-    if (!prefersReduced.matches) {
-      try {
-        THREE = await import('./vendor/three.module.js');
-        ({ OrbitControls } = await import('./vendor/OrbitControls.js'));
-      } catch (err) {
-        console.error('3D module load failed:', err);
-      }
-    }
-
-    if (THREE && OrbitControls) {
-      const supportColor = getComputedStyle(document.documentElement).getPropertyValue('--support').trim();
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 2000);
-      const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.getElementById('canvas-container').appendChild(renderer.domElement);
-      const controls = new OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.08;
-      camera.position.set(0, 30, 120);
-
-      const repoClusters = {};
-      repoOrder.forEach((r,idx) => repoClusters[r] = idx);
-
-      // Shader
-      const material = new THREE.ShaderMaterial({
-          uniforms: { time: { value: 0 }, uPixelRatio: { value: window.devicePixelRatio } },
-          vertexShader: `
-              attribute float size;
-              attribute float visible;
-              varying vec3 vColor;
-              varying float vVisible;
-              void main() {
-                  vColor = color;
-                  vVisible = visible;
-                  vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-                  gl_PointSize = size * (300.0 / -mvPosition.z);
-                  gl_Position = projectionMatrix * mvPosition;
-              }
-          `,
-          fragmentShader: `
-              uniform float time;
-              varying vec3 vColor;
-              varying float vVisible;
-              void main() {
-                  if (vVisible < 0.5) discard;
-                  float r = distance(gl_PointCoord, vec2(0.5));
-                  if (r > 0.5) discard;
-                  float glow = 1.0 - (r * 2.0);
-                  float twinkle = 0.7 + 0.3 * sin(time * 2.0 + gl_FragCoord.x * 0.01);
-                  gl_FragColor = vec4(vColor * twinkle, glow);
-              }
-          `,
-          transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, vertexColors: true
-      });
-
-      // ── Real commits + synthetic stars for visual density ──
-      COMMITS.sort((a,b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
-
-      const dates = COMMITS.map(c => new Date(c.date).getTime()).sort((a,b) => a-b);
-      dateMin = dates[0];
-      dateMax = dates[dates.length-1];
-      document.getElementById('time-min').textContent = new Date(dateMin).getFullYear();
-      document.getElementById('time-max').textContent = new Date(dateMax).getFullYear();
-
-      const N = Math.max(GALAXY_TOTAL, COMMITS.length);
-      const positions = new Float32Array(N * 3);
-      const colors = new Float32Array(N * 3);
-      const sizes = new Float32Array(N);
-      visibleAttr = new Float32Array(N);
-
-      COMMITS.forEach(c => stars.push({ repo: c.repo, add: c.add, t: (new Date(c.date).getTime() - dateMin) / ((dateMax - dateMin) || 1) }));
-      for (let i = COMMITS.length; i < N; i++) {
-        const repo = repoOrder[i % repoOrder.length];
-        stars.push({ repo, add: 1 + Math.floor(Math.random() * 200), t: Math.random() });
-      }
-
-      stars.forEach((s, idx) => {
-          const cluster = repoClusters[s.repo] ?? 0;
-          const angle = (cluster / repoOrder.length) * Math.PI * 2;
-          const radius = 50;
-          positions[idx*3]   = Math.cos(angle) * radius + (Math.random() - 0.5) * 15;
-          positions[idx*3+1] = Math.sin(angle) * radius + (Math.random() - 0.5) * 15;
-          positions[idx*3+2] = (s.t - 0.5) * 200;
-
-          const hex = REPOS[s.repo]?.color || supportColor;
-          const col = new THREE.Color(hex);
-          colors[idx*3] = col.r; colors[idx*3+1] = col.g; colors[idx*3+2] = col.b;
-          sizes[idx] = 2.0 + Math.log(s.add + 1) * 0.8;
-          visibleAttr[idx] = 1.0;
-      });
-
-      geometry = new THREE.BufferGeometry();
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-      geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-      geometry.setAttribute('visible', new THREE.BufferAttribute(visibleAttr, 1));
-      points = new THREE.Points(geometry, material);
-      scene.add(points);
-
-      // ── Hover + click ──
-      const raycaster = new THREE.Raycaster();
-      raycaster.params.Points.threshold = 1.5;
-      const mouse = new THREE.Vector2();
-      let hoveredIndex = -1;
-
-      const pickAt = (x, y) => {
-          mouse.x = (x / window.innerWidth) * 2 - 1;
-          mouse.y = -(y / window.innerHeight) * 2 + 1;
-          raycaster.setFromCamera(mouse, camera);
-          const hits = raycaster.intersectObject(points);
-          if (hits.length > 0 && visibleAttr[hits[0].index] > 0.5) return hits[0].index;
-          return -1;
-      };
-      const tooltip = document.getElementById('tooltip');
-
-      window.addEventListener('mousemove', e => {
-          // Prevent hover logic when over UI components
-          if (e.target.closest('#overlay') || e.target.closest('.project-panel') || e.target.closest('#hud')) {
-              tooltip.style.opacity = 0;
-              return;
-          }
-          const idx = pickAt(e.clientX, e.clientY);
-          if (idx !== hoveredIndex) {
-              hoveredIndex = idx;
-              if (idx >= 0 && idx < COMMITS.length) {
-                  const c = COMMITS[idx];
-                  tooltip.innerHTML = `<span style="color:${REPOS[c.repo]?.color || supportColor}">${REPOS[c.repo]?.title || c.repo}</span><br>${c.date}<br><span style="color:var(--fg)">${c.msg}</span>`;
-              } else if (idx >= 0) {
-                  const s = stars[idx];
-                  tooltip.innerHTML = `<span style="color:${REPOS[s.repo]?.color || supportColor}">${REPOS[s.repo]?.title || s.repo}</span><br><span style="color:var(--fg-muted)">~${s.add} insertions</span>`;
-              }
-          }
-          if (idx >= 0) {
-              tooltip.style.opacity = 1;
-              tooltip.style.left = e.clientX + 15 + 'px';
-              tooltip.style.top = e.clientY + 15 + 'px';
-          } else {
-              tooltip.style.opacity = 0;
-          }
-      });
-
-      // Tap on touch devices (no hover) → open the project panel directly
-      window.addEventListener('touchstart', e => {
-          if (e.touches.length !== 1) return;
-          const idx = pickAt(e.touches[0].clientX, e.touches[0].clientY);
-          if (idx >= 0 && idx < COMMITS.length) {
-              e.preventDefault();
-              openProject(COMMITS[idx].repo);
-          }
-      }, { passive: false });
-
-      window.addEventListener('click', e => {
-        if (e.target.closest('.project-panel') || e.target.closest('#overlay') || e.target.closest('#hud') || e.target.closest('#time-slider-wrap') || e.target.closest('#mobile-legend') || e.target.closest('#contact-links')) return;
-        if (hoveredIndex >= 0 && hoveredIndex < COMMITS.length) {
-          openProject(COMMITS[hoveredIndex].repo);
-          hoveredIndex = -1;
-        }
-      });
-
-      function animate(t) {
-          requestAnimationFrame(animate);
-          material.uniforms.time.value = t * 0.001;
-          points.rotation.y += 0.0005;
-          controls.update();
-          renderer.render(scene, camera);
-      }
-      animate();
-    } else {
-      // Reduced motion: static view, hide interactive 3D affordances
-      document.getElementById('time-slider-wrap').style.display = 'none';
-      document.getElementById('tooltip').style.display = 'none';
-    }
+  /* ── 10. close mobile menu: link tap, Escape, outside click ── */
+  $$('.nav-menu .m-links a').forEach(a => a.addEventListener('click', () => {
+    const d = a.closest('details'); if (d) d.removeAttribute('open');
+  }));
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape') $$('.nav-menu[open]').forEach(d => d.removeAttribute('open'));
+  });
+  addEventListener('click', e => {
+    $$('.nav-menu[open]').forEach(d => { if (!d.contains(e.target)) d.removeAttribute('open'); });
+  });
+})();

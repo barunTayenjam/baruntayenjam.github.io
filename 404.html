@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page lost in space | Barun Tayenjam</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/icon-192.png">
+<script>(function(){try{var t=localStorage.getItem('bt-theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+:root{--bg:#050a0c;--ink:#e9f4f2;--muted:#8fa8a4;--acc:#2dd4bf;--disp:'Syne',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html[data-theme="light"]{--bg:#f2f6f5;--ink:#0f2422;--muted:#48615e;--acc:#0a7d70}
+html[data-theme="light"] body{background:radial-gradient(ellipse at 50% 30%,#e2ebea 0%,var(--bg) 70%)}
+html[data-theme="light"] a.btn,html[data-theme="light"] a.btn:hover{color:var(--acc-on)}
+body{background:radial-gradient(ellipse at 50% 30%,#0a1a20 0%,var(--bg) 70%);color:var(--ink);font-family:var(--mono);min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem}
+.code{font-family:var(--disp);font-weight:800;font-size:clamp(5rem,18vw,11rem);background:linear-gradient(90deg,var(--acc),#fbbf24);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.msg{color:var(--muted);margin:1.2rem 0 2.2rem;font-size:1.05rem}
+.msg b{color:var(--ink)}
+a.btn{display:inline-block;padding:.9rem 1.8rem;border-radius:99px;background:var(--acc);color:#042220;font-weight:600;text-decoration:none;transition:transform .25s}
+a.btn:hover{transform:translateY(-3px)}
+a.home{display:block;margin-top:1.2rem;color:var(--muted);font-size:.85rem}
+.meta{position:fixed;bottom:1.2rem;left:0;right:0;font-size:.72rem;color:#5c7370}
+</style>
+</head>
+<body>
+<main>
+  <div class="code">404</div>
+  <p class="msg">This commit fell into a <b>parallel universe</b>.<br>Wrong repo, maybe?</p>
+  <a class="btn" href="/">Beam me home ↗</a>
+  <a class="home" href="https://baruntayenjam.github.io/">or read Tech Lead Notes</a>
+</main>
+<p class="meta">BARUN T. · Technical Lead</p>
+</body>
+</html>

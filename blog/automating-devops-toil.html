@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automating DevOps toil: the 20 hrs/week math — Tech Lead Notes</title>
+<meta name="description" content="Where 20+ hours of weekly DevOps toil actually goes, what I automated, and a simple ROI framework for picking the next target.">
+<meta name="theme-color" content="#050a0c">
+<link rel="canonical" href="https://baruntayenjam.github.io/blog/automating-devops-toil.html">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/img/icon-192.png">
+<script>(function(){try{var t=localStorage.getItem('bt-theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+:root{--bg:#050a0c;--bg2:#081114;--surface:#0b1519;--line:rgba(148,196,190,.13);--ink:#e9f4f2;--muted:#8fa8a4;--faint:#7a938f;--acc:#2dd4bf;--acc-on:#042220;--nav-bg:rgba(5,10,12,.78);--disp:'Syne',sans-serif;--body:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace}
+html[data-theme="light"]{--bg:#f2f6f5;--bg2:#e8efee;--surface:#ffffff;--line:rgba(15,55,50,.16);--ink:#0f2422;--muted:#48615e;--faint:#556f6b;--acc:#0a7d70;--acc-on:#ffffff;--nav-bg:rgba(242,246,245,.86)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.75}
+@font-face{font-family:'Space Grotesk';src:url('../assets/fonts/sgrotesk-V8mDoQDjQSkFtoMM3T6r8E7mPb54C-s0.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Syne';src:url('../assets/fonts/syne-8vIH7w4qzmVxm25L9Hz_.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('../assets/fonts/jmono-tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx3cwhsk.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+.wrap{max-width:720px;margin:0 auto;padding:3.5rem 1.4rem 5rem}
+.back{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:inline-block;margin-bottom:2.4rem;border:1px solid var(--line);padding:.55rem 1.1rem;border-radius:99px}
+.back:hover{color:var(--acc);border-color:var(--acc)}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.1;letter-spacing:-.01em;margin-bottom:.7rem}
+.date{font-family:var(--mono);font-size:.75rem;color:var(--acc);letter-spacing:.12em;text-transform:uppercase;margin-bottom:2.6rem}
+h2{font-family:var(--disp);font-weight:700;font-size:1.35rem;margin:2.6rem 0 .9rem}
+p{color:var(--muted);margin-bottom:1.1rem}
+strong{color:var(--ink)}
+code{font-family:var(--mono);font-size:.82em;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:.12em .4em;color:var(--ink)}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.2rem;overflow-x:auto;margin-bottom:1.4rem}
+pre code{background:none;border:0;padding:0;font-size:.78rem;line-height:1.7}
+ul,ol{color:var(--muted);padding-left:1.4rem;margin-bottom:1.2rem}
+blockquote{border-left:2px solid var(--acc);padding-left:1rem;color:var(--muted);font-style:italic;margin:1.4rem 0}
+a{color:var(--acc)}
+hr{border:0;border-top:1px solid var(--line);margin:2.6rem 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../">← Tech Lead Notes</a>
+<h1>Automating DevOps toil: the 20 hrs/week math</h1>
+<p class="date">2026-06-30</p>
+<p>Every team I've led burns ~20 hrs/week on toil. Here's the breakdown I keep seeing:</p>
+<table>
+<thead>
+<tr>
+<th>Toil</th>
+<th>hrs/week</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manual deploys + rollback babysitting</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Flaky CI reruns + pipeline babysitting</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Log grepping + alert triage</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Env drift (<code>it works on staging</code>)</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Certs, secrets, access tickets</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Status updates about the above</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Total: 20. One half-time engineer doing nothing creative.</p>
+<h2>What I automated</h2>
+<ul>
+<li>CI/CD: hermetic pipelines in GitHub Actions, <code>deploy.sh</code> single entrypoint, blue-green with one-command rollback</li>
+<li>Deploy scripts: <code>./deploy --env prod --version $SHA</code>, no wiki runbooks, no SSH-into-prod</li>
+<li>Monitoring: SLO alerts only, <code>runbook.md</code> linked in every page, auto-remediate disk/memory with systemd handlers</li>
+<li>Incident response: <code>incident init</code> scaffolds timeline + Slack channel + status page draft</li>
+</ul>
+<p>Stack boring on purpose: bash, cron, GitHub Actions, Prometheus. No platform team needed.</p>
+<h2>Compound effect</h2>
+<p>First automation saves 2 hrs/week. Feels small. By month 3, five automations stack: deploy fear gone → ship smaller → fewer rollbacks → fewer pages → more build time → more automation.</p>
+<p>Team of 6 went from fortnightly painful releases to daily calm deploys in one quarter. Same headcount.</p>
+<h2>ROI framework</h2>
+<p>Score each toil 1-5 on:</p>
+<ol>
+<li>Frequency (<code>cron</code> daily = 5)</li>
+<li>Pain (pages at 3am = 5)</li>
+<li>Automate-ability (deterministic script = 5)</li>
+</ol>
+<p>Sort by sum. Top item wins. Timebox to one day. If script takes longer than a day, slice smaller.</p>
+<p>Rule: automate top toil before building new features. Toil taxes every future sprint; features don't.</p>
+</div>
+</body>
+</html>

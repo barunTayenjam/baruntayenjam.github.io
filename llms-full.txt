@@ -1,30 +1,69 @@
 # Barun Tayenjam
-# Technical Lead | Web Security · API Architecture · AI-Driven Development
 
-15+ years architecting secure, high-performance web platforms. I lead teams to ship faster with hardened APIs, automated CI/CD, and AI-assisted engineering.
+> Technical Lead with 15+ years of experience architecting secure web platforms, martech integrations (Adobe Marketo Engage, Zoho Deluge, Google Apps Script), DevOps automation, and AI-assisted engineering workflows.
 
-## Impact Stats
-- 15+ years architecting web platforms
-- 99.99% uptime secure production systems
-- 20+ hrs/wk automation reclaimed
-- 10+ devs mentored to senior
-- 4 tools open-source shipped
-
-## Repositories
-### gitops (One-command git automation with AI. Generates commit messages via Groq or Ollama — adopted across the team to standardize hygiene and cut time spent on commits.) — https://github.com/barungrazitti/gitops JS, Groq, Ollama
-
-### JiraGrok (AI Chrome extension summarizing JIRA tickets using Groq (Llama 3.3). Cuts context-switching and ticket-triage time for PMs and engineers.) — https://github.com/barungrazitti/JiraGrok JS, Groq, AI
-
-### wordpress-matrix (Production-ready WordPress dev environment via Docker. One command from clone to running stack — zero-toil onboarding for new devs.) — https://github.com/baruntayenjam/wordpress-matrix Docker, WordPress
-
-### casa-visitor-guardian (TypeScript visitor management and physical-security system. Role-based access, audit logging.) — https://github.com/baruntayenjam/casa-visitor-guardian TypeScript, Security
-
-### Tech Lead Notes (Weekly notes on developer experience, automation, and engineering decisions. The writing behind the work.) — https://baruntayenjam.github.io Jekyll, Writing
-
-### manipur-economy (Economic research and visualization platform.) — https://github.com/baruntayenjam/manipur-economy HTML, Research
-
-### SentryVision (Real-time error tracking and alerting dashboard — placeholder entry.) — https://github.com/baruntayenjam/SentryVision TS, Monitoring
-
-## Contact
-- Email: barun.2009.tam at gmail.com
+## Profile
+- Role: Technical Lead at Grazitti Interactive (Mar 2025 – Present)
+- Prior: Senior Software Engineer (SearchUnify Website, Docs, WordPress Connector — federated AI cognitive search, 100+ enterprise content connectors)
 - Location: Imphal West, Manipur, India
+- Website: https://baruntayenjam.github.io
+- GitHub: https://github.com/baruntayenjam
+- Work GitHub: https://github.com/barungrazitti
+- LinkedIn: https://www.linkedin.com/in/barun-tayenjam
+- Uptime: 99.99% enterprise production availability
+- Automation: 20+ hours/week toil eliminated across engineering teams
+- Conference: Contributor — ROTSSSTLS 2025 (Manipur University, Imphal)
+
+## Core Skills
+### Marketing Automation and Martech
+- Adobe Marketo Engage (REST API, Smart Campaigns, Velocity Scripting, Engagement Programs)
+- Zoho Deluge (custom functions, Blueprints, Functions-as-REST-API)
+- Google Apps Script (UrlFetchApp, Workspace add-ons, time/event triggers)
+- Lead Scoring, MQL-to-SQL funnel, A/B Testing, RevOps
+- HubSpot, Pardot, Salesforce Marketing Cloud
+
+### Integration and APIs
+- REST API design, OAuth 2.0, Webhooks
+- Salesforce Integration, MS Dynamics Sync, Shopify connectors
+- iPaaS, ETL Pipelines, Event-driven Architecture
+
+### AI and LLM Engineering
+- n8n workflow automation and self-hosted AI pipelines
+- MCP (Model Context Protocol) tool servers
+- Agentic RAG with vector-search grounding
+- Hermes Agent (persistent memory), Agent Zero (Dockerized multi-agent orchestration)
+- LLM plumbing: Groq, Ollama, Llama 3.3, local models
+
+### DevOps and Platform
+- CI/CD, GitOps, Docker, Kubernetes, Observability, SRE
+- Incident Response, Node.js, PHP
+
+### Security
+- Security Architecture, OWASP, Defense-in-Depth, Web Security, RBAC, Audit Logging
+
+### Leadership
+- Team Leadership, Mentoring (10+ engineers to senior), Design Reviews, Cross-functional Delivery, Stakeholder Management
+
+## Case Studies
+- **449% → 49% CPU** — Cut CPU load 9x on multi-camera AI vision platform (casa-visitor-guardian). Profiled reader loops, capped OpenCV threads, tuned YOLOv8 inference cadence. 49% CPU on 4-core servers with full detection retained.
+- **99.99% uptime** — Enterprise search web platform (SearchUnify). Hardened CI/CD, staged deploys, observability and rollback guardrails.
+- **20+ hrs/week reclaimed** — GitOps automation (gitops repo). One-command git automation with AI commit messages via Groq/Ollama.
+
+## Open Source Repositories
+- [gitops](https://github.com/barungrazitti/gitops): AI git commit automation using Groq / Ollama.
+- [JiraGrok](https://github.com/barungrazitti/JiraGrok): Chrome extension summarizing JIRA tickets with Llama 3.3.
+- [StarkCSS](https://github.com/barungrazitti/StarkCSS): AI-powered CSS optimizer detecting unused rules and dead specificity.
+- [year-in-code](https://github.com/barungrazitti/year-in-code): GitLab/GitHub year-in-review generator producing shareable code stories.
+- [wordpress-matrix](https://github.com/baruntayenjam/wordpress-matrix): Containerized WordPress environment with Docker.
+- [casa-visitor-guardian](https://github.com/baruntayenjam/casa-visitor-guardian): TypeScript visitor management and physical security platform with NVIDIA AI detection.
+- [manipur-economy](https://github.com/baruntayenjam/manipur-economy): Economic research and visualization platform.
+
+## Education
+- MBA, Information Technology — Lovely Professional University (2017)
+- BCA, First Division — Punjab Technical University (2014)
+- B.Sc. Information Technology — DAV College Jalandhar
+
+## Technical Writing
+- [Building a commit galaxy from 15 years of git history](https://baruntayenjam.github.io/blog/building-commit-galaxy.html)
+- [One-command git automation with AI](https://baruntayenjam.github.io/blog/one-command-git-automation.html)
+- [Automating DevOps toil: the 20 hrs/week math](https://baruntayenjam.github.io/blog/automating-devops-toil.html)

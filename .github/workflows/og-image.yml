@@ -6,6 +6,9 @@ on:
     paths: [scripts/gen-og.py, content.json]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   gen:
     runs-on: ubuntu-latest
