@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <title>Plumb v4 — exact 45° bob</title>
+  <!-- shaft; diamond bob with exact 45° edges (half-width 42 = half-height 42) -->
+  <rect x="120" y="20" width="16" height="92" fill="#000"/>
+  <path d="M 128,124 L 170,166 L 128,208 L 86,166 Z" fill="#000"/>
+</svg>

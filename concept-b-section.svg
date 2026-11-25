@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <title>Section v7 — centred profile</title>
+  <!-- high terrace, 45° face, valley floor; vertically centred, exact 45° -->
+  <path d="M 28,84 H 100 L 152,136 H 228" fill="none" stroke="#000" stroke-width="28"/>
+</svg>

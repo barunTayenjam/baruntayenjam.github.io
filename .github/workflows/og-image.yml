@@ -13,12 +13,12 @@ jobs:
   gen:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install Pillow
         run: pip install pillow
       - name: Generate image
         run: python scripts/gen-og.py
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: regenerate og-image.png"
           file_pattern: og-image.png

@@ -11,13 +11,13 @@ jobs:
   minify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: "22"
       - run: npx -y esbuild app.js --minify --format=esm --outfile=app.min.js
       - run: npx -y esbuild style.css --minify --outfile=style.min.css
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: regenerate minified assets"
           file_pattern: app.min.js style.min.css
