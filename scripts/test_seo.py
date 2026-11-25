@@ -67,5 +67,36 @@ class TestBlogPostingSchema(unittest.TestCase):
                              f + " headline != title prefix")
 
 
+SOCIAL_TAGS = ("og:title", "og:description", "og:url", "og:type",
+               "og:image", "twitter:card", "twitter:title",
+               "twitter:description", "twitter:image")
+
+
+class TestSocialMeta(unittest.TestCase):
+    def test_each_blog_post_has_social_meta(self):
+        """Each blog post carries OG + Twitter card tags for share previews."""
+        for f in sorted(glob.glob(ROOT + "/blog/*.html")):
+            with open(f, encoding="utf-8") as fh:
+                html = fh.read()
+            for tag in SOCIAL_TAGS:
+                self.assertIn(tag, html, f + " missing " + tag)
+            # OG url must equal canonical
+            canon = canonical_of(f)
+            ogurl = re.search(r'property="og:url" content="([^"]+)"', html)
+            self.assertEqual(ogurl.group(1), canon,
+                             f + " og:url != canonical")
+
+
+class TestLlmsDiscovery(unittest.TestCase):
+    def test_robots_and_index_reference_llms_txt(self):
+        """llms.txt is discoverable: linked from robots.txt and index head."""
+        robots = open(ROOT + "/robots.txt", encoding="utf-8").read()
+        self.assertIn("llms.txt", robots, "robots.txt missing llms.txt link")
+        with open(ROOT + "/index.html", encoding="utf-8") as fh:
+            index = fh.read()
+        self.assertIn('href="llms.txt"', index,
+                      "index.html missing llms.txt link")
+
+
 if __name__ == "__main__":
     unittest.main()

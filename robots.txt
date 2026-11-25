@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://baruntayenjam.github.io/sitemap.xml
+# LLM crawler guidance: https://baruntayenjam.github.io/llms.txt
